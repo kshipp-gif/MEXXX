@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="MEXXX"
-run/main_scene="uid://bav646854tbx7"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Enums="*res://data/Enums.gd"
+EventBus="*res://autoload/EventBus.gd"
+GameState="*res://autoload/GameState.gd"
 
 [display]
 

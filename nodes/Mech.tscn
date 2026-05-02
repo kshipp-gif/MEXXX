@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://mech001"]
+
+[ext_resource type="Script" path="res://nodes/Mech.gd" id="1_mchscr"]
+[ext_resource type="Script" path="res://components/managers/SlotManager.gd" id="2_slotmg"]
+[ext_resource type="Script" path="res://components/managers/APManager.gd" id="3_apmgr"]
+
+[node name="Mech" type="CharacterBody2D"]
+script = ExtResource("1_mchscr")
+
+[node name="SlotManager" type="Node" parent="."]
+script = ExtResource("2_slotmg")
+
+[node name="APManager" type="Node" parent="."]
+script = ExtResource("3_apmgr")
