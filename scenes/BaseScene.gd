@@ -13,6 +13,11 @@ func _ready() -> void:
 	EventBus.subscribe("combat_triggered", _on_combat_triggered)
 	$UI/LetTimePassButton.pressed.connect(_on_let_time_pass)
 
+func _exit_tree() -> void:
+	EventBus.unsubscribe("season_advanced", _on_season_advanced)
+	EventBus.unsubscribe("base_health_changed", _on_base_health_changed)
+	EventBus.unsubscribe("combat_triggered", _on_combat_triggered)
+
 func _on_let_time_pass() -> void:
 	$BaseManager.advance_season()
 

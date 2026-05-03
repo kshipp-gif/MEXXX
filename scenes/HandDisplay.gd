@@ -38,6 +38,9 @@ var _drag_offset: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	EventBus.subscribe("hand_updated", _on_hand_updated)
 
+func _exit_tree() -> void:
+	EventBus.unsubscribe("hand_updated", _on_hand_updated)
+
 func _process(_delta: float) -> void:
 	if _dragged_node != null:
 		_dragged_node.position = get_viewport().get_mouse_position() + _drag_offset
@@ -50,6 +53,8 @@ func _input(event: InputEvent) -> void:
 				_try_start_drag(event.position)
 			else:
 				_finish_drag()
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			_try_inspect(event.position)
 
 ## Try to pick up a hand card under the mouse.
 func _try_start_drag(mouse_pos: Vector2) -> void:
@@ -61,6 +66,18 @@ func _try_start_drag(mouse_pos: Vector2) -> void:
 		if rect.has_point(mouse_pos):
 			_dragged_node = node
 			_drag_offset = node.position - mouse_pos
+			get_viewport().set_input_as_handled()
+			return
+
+## Open the inspect panel for the topmost card under the mouse.
+func _try_inspect(mouse_pos: Vector2) -> void:
+	for i in range(_hand_nodes.size() - 1, -1, -1):
+		var node = _hand_nodes[i]
+		var half = Vector2(CARD_W, CARD_H) * 0.5
+		var rect = Rect2(node.position - half, Vector2(CARD_W, CARD_H))
+		if rect.has_point(mouse_pos):
+			if inspect_panel != null:
+				inspect_panel.show_for_card(node.card_data)
 			get_viewport().set_input_as_handled()
 			return
 

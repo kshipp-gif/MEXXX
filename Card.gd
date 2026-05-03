@@ -21,10 +21,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	emit_signal("hovered_off", self)
-
-
-func _input_event(_viewport, event, _shape_idx) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			emit_signal("inspect_requested", self)
-			get_viewport().set_input_as_handled()

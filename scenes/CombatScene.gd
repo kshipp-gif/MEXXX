@@ -31,6 +31,11 @@ func _ready() -> void:
 	# Build a test deck of 15 TestCard instances directly in DeckManager.
 	_build_test_deck()
 
+func _exit_tree() -> void:
+	EventBus.unsubscribe("slot_changed", _on_slot_changed)
+	EventBus.unsubscribe("turn_started", _on_turn_started)
+	EventBus.unsubscribe("combat_ended", _on_combat_ended)
+
 ## Called by Main after the scene is added to the tree.
 ## Collects enemy nodes from the Enemies container and starts combat.
 func _start_combat() -> void:
@@ -68,4 +73,6 @@ func _on_combat_ended(_payload: Dictionary) -> void:
 ## Called when the player clicks "End Turn".
 func _on_end_turn() -> void:
 	$UI/EndTurnButton.disabled = true
+	# Discard remaining hand cards before the enemy turn begins.
+	$HandManager.end_turn()
 	$CombatTurnManager.end_player_turn()

@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://main001"]
+[gd_scene load_steps=3 format=3 uid="uid://main001"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/PauseMenu.tscn" id="2_pm"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
+
+[node name="GameViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]
+handle_input_locally = false
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("2_pm")]

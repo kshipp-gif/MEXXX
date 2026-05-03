@@ -36,6 +36,9 @@ func _ready() -> void:
 	current_hp = max_hp
 	EventBus.subscribe("slot_changed", _on_slot_changed)
 
+func _exit_tree() -> void:
+	EventBus.unsubscribe("slot_changed", _on_slot_changed)
+
 ## Handles slot_changed events from the EventBus.
 ## When the Head slot changes, removes passives from the previous Head item
 ## and applies passives from the new Head item (if any).

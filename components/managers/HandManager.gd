@@ -13,6 +13,10 @@ func _ready() -> void:
 	EventBus.subscribe("ap_changed", _on_ap_changed)
 	EventBus.subscribe("turn_started", on_turn_started)
 
+func _exit_tree() -> void:
+	EventBus.unsubscribe("ap_changed", _on_ap_changed)
+	EventBus.unsubscribe("turn_started", on_turn_started)
+
 func _on_ap_changed(payload: Dictionary) -> void:
 	_current_ap = payload.get("current_ap", 0)
 
