@@ -29,6 +29,10 @@ var damage_multiplier: float = 1.0
 ## Current block points. Absorbs incoming damage before armor and HP. Resets each turn.
 var block: int = 0
 
+## Set to true if the Mech took any HP damage during the last enemy turn.
+## Reset to false at the start of each player turn by CombatTurnManager.
+var took_damage_last_enemy_turn: bool = false
+
 # Tracks the currently equipped Head item so its passives can be removed on unequip.
 var _head_item = null
 
@@ -61,7 +65,9 @@ func _on_slot_changed(payload: Dictionary) -> void:
 
 ## Reduce current_hp by the incoming amount, applying block absorption first,
 ## then armor reduction, then damage_multiplier (rounded to nearest).
-func take_damage(amount: int) -> void:
+## If attacker is provided and this unit has Retaliation stacks, the attacker
+## takes 1 damage per stack.
+func take_damage(amount: int, attacker: Node = null) -> void:
 	var absorbed: int = min(block, amount)
 	block -= absorbed
 	amount -= absorbed
@@ -69,7 +75,26 @@ func take_damage(amount: int) -> void:
 		return
 	var effective: int = max(0, amount - armor_bonus)
 	effective = roundi(effective * damage_multiplier)
-	current_hp = max(0, current_hp - effective)
+	if effective > 0:
+		current_hp = max(0, current_hp - effective)
+		took_damage_last_enemy_turn = true
+	_trigger_retaliation(attacker)
+
+## Deal retaliation damage back to the attacker if this unit has Retaliation active.
+func _trigger_retaliation(attacker: Node) -> void:
+	if attacker == null:
+		return
+	for child in get_children():
+		if child is StatusEffectManager:
+			if child.has_effect("retaliation"):
+				var stacks: int = 0
+				for effect in child.get_active_effects():
+					if effect.status_name == "retaliation":
+						stacks = effect.duration
+						break
+				if stacks > 0 and attacker.has_method("take_damage"):
+					attacker.take_damage(stacks)
+			return
 
 ## Returns true if the Mech still has HP remaining.
 func is_alive() -> bool:

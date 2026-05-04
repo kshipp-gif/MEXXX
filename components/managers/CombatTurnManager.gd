@@ -19,6 +19,7 @@ func start_combat(enemy_nodes: Array[Node]) -> void:
 	enemies = enemy_nodes
 	current_turn = TurnOwner.PLAYER
 	_tick_unit_effects(mech)
+	_reset_mech_damage_flag()
 	EventBus.emit("turn_started", { "owner": "player" })
 
 ## Called when the player presses "End Turn".
@@ -95,7 +96,13 @@ func _check_end_conditions() -> void:
 	# No end condition met — begin the next player turn
 	current_turn = TurnOwner.PLAYER
 	_tick_unit_effects(mech)
+	_reset_mech_damage_flag()
 	EventBus.emit("turn_started", { "owner": "player" })
+
+## Reset the mech's damage flag at the start of each player turn.
+func _reset_mech_damage_flag() -> void:
+	if mech != null:
+		mech.set("took_damage_last_enemy_turn", false)
 
 ## Tick status effects on a unit at the start of its turn.
 ## Resets block to 0 first (block does not carry over between turns),

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dgg3linabwtae"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_w1f6q"]
+
+[resource]
+script = ExtResource("1_w1f6q")
+id = &"broadsword"
+display_name = "Broadsword"
+tags = Array[String](["1H", "Melee"])
+flavor_text = "Just your run of the mill broadsword, only scaled up for a mech."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

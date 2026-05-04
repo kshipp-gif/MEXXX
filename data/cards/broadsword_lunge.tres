@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dolq7vjsg4uyp"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_hc27l"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_jhjg8"]
+[ext_resource type="Script" uid="uid://dl83joj0iay4g" path="res://components/effects/MoveEffect.gd" id="2_iijpj"]
+[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/items/broadsword.tres" id="4_yeaiu"]
+
+[sub_resource type="Resource" id="Resource_rem4t"]
+script = ExtResource("1_jhjg8")
+amount = 4
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_q5uda"]
+script = ExtResource("2_iijpj")
+metadata/_custom_type_script = "uid://dl83joj0iay4g"
+
+[resource]
+script = ExtResource("1_hc27l")
+display_name = "Lunge"
+ap_cost = 2
+card_type = 4
+effects = Array[Resource]([SubResource("Resource_rem4t"), SubResource("Resource_q5uda")])
+source_item = ExtResource("4_yeaiu")
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

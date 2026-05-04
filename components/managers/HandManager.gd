@@ -34,24 +34,25 @@ func play_card(card: Card) -> bool:
 	# Check AP — spend returns false and emits action_rejected if insufficient
 	if not ap_manager.spend(card.ap_cost):
 		return false
-	# Check ammo — if card requires ammo and the source item is depleted, refund and reject
-	if card.has_tag("ammo") and card.source_item != null:
-		var item: Item = card.source_item as Item
-		if item != null and item.max_ammo > 0 and item.current_ammo <= 0:
-			# Ammo depleted — refund AP and reject
+	# Check ammo — if the source item is ammo-based and depleted, refund and reject
+	var source_item: Item = card.source_item as Item
+	if source_item != null and source_item.has_tag("ammo"):
+		if source_item.max_ammo > 0 and source_item.current_ammo <= 0:
 			ap_manager.grant(card.ap_cost)
 			return false
-		if item != null and item.max_ammo > 0:
-			item.decrement_ammo()
-	# Execute effects in order
+		if source_item.max_ammo > 0:
+			source_item.decrement_ammo()
+	# Execute effects in order, passing the full effects list and current index into context.
 	var context: Dictionary = {
 		"caster": self,
 		"ap_manager": ap_manager,
 		"deck_manager": deck_manager,
 		"event_bus": EventBus,
+		"card_effects": card.effects,
 	}
-	for effect in card.effects:
-		effect.execute(context)
+	for i in range(card.effects.size()):
+		context["current_effect_index"] = i
+		card.effects[i].execute(context)
 	# Discard the card from hand
 	if deck_manager != null:
 		deck_manager.discard_card(card)
@@ -71,9 +72,8 @@ func get_playable_cards() -> Array[Card]:
 	for card in deck_manager.hand:
 		if card.ap_cost > _current_ap:
 			continue
-		if card.has_tag("ammo") and card.source_item != null:
-			var item: Item = card.source_item as Item
-			if item != null and item.max_ammo > 0 and item.current_ammo <= 0:
-				continue  # ammo depleted
+		var item: Item = card.source_item as Item
+		if item != null and item.has_tag("ammo") and item.max_ammo > 0 and item.current_ammo <= 0:
+			continue  # ammo depleted
 		playable.append(card)
 	return playable

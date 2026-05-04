@@ -6,7 +6,8 @@ extends Resource
 class_name StatusEffect
 
 ## String identifier used for deduplication in StatusEffectManager.
-@export var status_name: String = ""
+## Set by subclasses in _init(). Not exported — subclasses own this value.
+var status_name: String = ""
 
 ## Number of turns remaining. Decremented by tick(). Effect expires when 0.
 @export var duration: int = 1

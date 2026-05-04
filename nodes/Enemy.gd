@@ -29,7 +29,9 @@ func _ready() -> void:
 	hp = max_hp
 
 ## Reduce hp by amount, applying block absorption first, then damage_multiplier.
-func take_damage(amount: int) -> void:
+## If attacker is provided and this unit has Retaliation stacks, the attacker
+## takes 1 damage per stack.
+func take_damage(amount: int, attacker: Node = null) -> void:
 	var absorbed: int = min(block, amount)
 	block -= absorbed
 	amount -= absorbed
@@ -37,6 +39,23 @@ func take_damage(amount: int) -> void:
 		return
 	var effective: int = roundi(amount * damage_multiplier)
 	hp = max(0, hp - effective)
+	_trigger_retaliation(attacker)
+
+## Deal retaliation damage back to the attacker if this unit has Retaliation active.
+func _trigger_retaliation(attacker: Node) -> void:
+	if attacker == null:
+		return
+	for child in get_children():
+		if child is StatusEffectManager:
+			if child.has_effect("retaliation"):
+				var stacks: int = 0
+				for effect in child.get_active_effects():
+					if effect.status_name == "retaliation":
+						stacks = effect.duration
+						break
+				if stacks > 0 and attacker.has_method("take_damage"):
+					attacker.take_damage(stacks)
+			return
 
 ## Returns true if the Enemy still has HP remaining.
 func is_alive() -> bool:

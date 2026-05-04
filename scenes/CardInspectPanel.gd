@@ -8,6 +8,7 @@ const STATUS_DEFINITIONS: Dictionary = {
 	"pinned": "Pinned: The unit cannot move for the duration.",
 	"brittle": "Brittle: All Block gained by the unit is halved (floored) for the duration.",
 	"vulnerable": "Vulnerable: The unit takes 25% more damage from all sources for the duration.",
+	"retaliation": "Retaliation: When this unit takes damage, the attacker takes 1 damage per stack of Retaliation.",
 }
 
 @onready var _title_label: Label = $MarginContainer/VBox/TitleLabel
@@ -28,14 +29,14 @@ func show_for_card(card: Card) -> void:
 
 	_title_label.text = card.display_name
 
-	# Tags
-	if card.tags.is_empty():
-		_tags_label.text = "Tags: —"
-	else:
-		_tags_label.text = "Tags: " + ", ".join(card.tags)
-
-	# Source item
+	# Tags — from the source item, not the card
 	var item: Item = card.source_item as Item
+	if item != null and not item.tags.is_empty():
+		_tags_label.text = "Tags: " + ", ".join(item.tags)
+	else:
+		_tags_label.text = "Tags: —"
+
+	# Source item name and flavor text
 	if item != null:
 		_item_label.text = "Item: " + item.display_name
 		_flavor_label.text = item.flavor_text if item.flavor_text != "" else ""

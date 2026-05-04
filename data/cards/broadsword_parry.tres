@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cu3le5ypoeecg"]
+
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_h4ndo"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_qcvol"]
+[ext_resource type="Script" uid="uid://djdis0afn51kg" path="res://components/effects/ApplyStatusEffect.gd" id="2_hr4jh"]
+[ext_resource type="Script" uid="uid://d11bo3lbqgicj" path="res://components/status_effects/RetaliationEffect.gd" id="3_ba7k8"]
+[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/items/broadsword.tres" id="3_t6mbi"]
+
+[sub_resource type="Resource" id="Resource_hr4jh"]
+script = ExtResource("1_h4ndo")
+amount = 5
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[sub_resource type="Resource" id="Resource_5pqqq"]
+script = ExtResource("3_ba7k8")
+duration = 2
+
+[sub_resource type="Resource" id="Resource_208og"]
+script = ExtResource("2_hr4jh")
+status_effect_resource = SubResource("Resource_5pqqq")
+target_type = "caster"
+metadata/_custom_type_script = "uid://djdis0afn51kg"
+
+[resource]
+script = ExtResource("1_qcvol")
+display_name = "Parry"
+ap_cost = 1
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_hr4jh"), SubResource("Resource_208og")])
+source_item = ExtResource("3_t6mbi")
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

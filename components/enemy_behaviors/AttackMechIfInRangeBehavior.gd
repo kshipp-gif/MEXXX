@@ -16,4 +16,4 @@ func decide(context: Dictionary) -> void:
 	var mech_pos: Vector2i = bm.get_position(mech.name)
 
 	if bm.tile_distance(enemy_pos, mech_pos) <= attack_range:
-		mech.take_damage(damage)
+		mech.take_damage(damage, enemy)
