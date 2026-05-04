@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_2mwpl"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_pekqq"]
 [ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_vg4ww"]
-[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/items/broadsword.tres" id="4_vg4ww"]
 
 [sub_resource type="Resource" id="Resource_3jp7y"]
 script = ExtResource("1_2mwpl")
@@ -20,5 +19,4 @@ display_name = "Riposte"
 ap_cost = 2
 card_type = 0
 effects = Array[Resource]([SubResource("Resource_3jp7y"), SubResource("Resource_lbsd4")])
-source_item = ExtResource("4_vg4ww")
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

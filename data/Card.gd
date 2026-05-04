@@ -21,7 +21,9 @@ class_name Card
 @export var effects: Array[Resource] = []
 
 ## The Item this card belongs to; used for ammo tracking, tag display, and reload logic.
-@export var source_item: Resource = null
+## Not stored on the Card resource to avoid circular references (Item → CardSet → Card → Item).
+## Resolved at runtime by DeckManager and passed through the play context.
+var source_item: Item = null
 
 ## Effective range in tiles (Chebyshev distance). Only meaningful for ranged items.
 @export var range_value: int = 0

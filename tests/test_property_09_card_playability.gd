@@ -5,17 +5,18 @@ extends EditorScript
 
 const ITERATIONS := 100
 
-func make_card(card_name: String, ap_cost: int, tags: Array[String] = []) -> Card:
+func make_card(card_name: String, ap_cost: int) -> Card:
 	var c: Card = load("res://data/Card.gd").new()
 	c.display_name = card_name
 	c.ap_cost = ap_cost
-	c.tags = tags
 	return c
 
-func make_item_with_ammo(max_ammo: int, current_ammo: int) -> Item:
+func make_item_with_ammo(max_ammo: int, current_ammo: int, is_ammo_tagged: bool = false) -> Item:
 	var item: Item = load("res://data/Item.gd").new()
 	item.max_ammo = max_ammo
 	item.current_ammo = current_ammo
+	if is_ammo_tagged:
+		item.tags.append("ammo")
 	return item
 
 func make_hand_manager(current_ap: int) -> Node:
@@ -76,8 +77,8 @@ func _run() -> void:
 		var max_ammo: int = rng.randi_range(1, 6)
 
 		var hm := make_hand_manager(current_ap)
-		var item := make_item_with_ammo(max_ammo, 0)  # current_ammo == 0 (depleted)
-		var card := make_card("ammo_card_%d" % i, ap_cost, ["ammo"])
+		var item := make_item_with_ammo(max_ammo, 0, true)  # current_ammo == 0, tagged "ammo"
+		var card := make_card("ammo_card_%d" % i, ap_cost)
 		card.source_item = item
 		hm.deck_manager.hand.append(card)
 

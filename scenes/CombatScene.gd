@@ -44,17 +44,22 @@ func _start_combat() -> void:
 		enemy_nodes.append(child)
 	$CombatTurnManager.start_combat(enemy_nodes)
 
-## Create 15 Card resources and load them directly into DeckManager.deck.
-## This bypasses SlotManager/CardSet so combat works without equipped items.
+## Load the Broadsword item and populate DeckManager directly.
+## Stamps source_item on each card so inspect panel shows item name and tags.
 func _build_test_deck() -> void:
 	$DeckManager.deck.clear()
 	$DeckManager.hand.clear()
 	$DeckManager.discard_pile.clear()
-	for i in range(15):
-		var card := Card.new()
-		card.display_name = "Test Card %d" % (i + 1)
-		card.ap_cost = 1
+
+	var broadsword: Item = load("res://data/items/broadsword.tres") as Item
+	if broadsword == null or broadsword.card_set == null:
+		push_warning("CombatScene: broadsword.tres not found or has no card_set — deck will be empty.")
+		return
+
+	for card in broadsword.card_set.cards:
+		card.source_item = broadsword
 		$DeckManager.deck.append(card)
+
 	$DeckManager.deck.shuffle()
 
 ## Rebuild the deck whenever a slot changes (e.g., mid-combat equip swap).

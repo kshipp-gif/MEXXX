@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardSet" format=3 uid="uid://j3vtrgxetj0h"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_dsa03"]
+[ext_resource type="Resource" uid="uid://dolq7vjsg4uyp" path="res://data/cards/broadsword_lunge.tres" id="2_8a0lb"]
+[ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_k0jgo"]
+[ext_resource type="Resource" uid="uid://cu3le5ypoeecg" path="res://data/cards/broadsword_parry.tres" id="3_g6qvb"]
+[ext_resource type="Resource" uid="uid://dfuk512eopx6c" path="res://data/cards/broadsword_riposte.tres" id="4_6tlme"]
+[ext_resource type="Resource" uid="uid://dvaiuxhnk7tww" path="res://data/cards/broadsword_slash.tres" id="5_bocjs"]
+[ext_resource type="Resource" uid="uid://de3ypuo75a242" path="res://data/cards/broadsword_strike.tres" id="6_q2rqo"]
+
+[resource]
+script = ExtResource("2_k0jgo")
+cards = Array[ExtResource("1_dsa03")]([ExtResource("2_8a0lb"), ExtResource("3_g6qvb"), ExtResource("4_6tlme"), ExtResource("5_bocjs"), ExtResource("6_q2rqo")])
+metadata/_custom_type_script = "uid://7wypwmwdlmpj"

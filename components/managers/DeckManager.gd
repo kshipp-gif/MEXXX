@@ -39,6 +39,7 @@ func build_deck(slot_manager: Node) -> void:
 			continue
 		added_items.append(item)
 		for card in item.card_set.cards:
+			card.source_item = item
 			deck.append(card)
 	deck.shuffle()
 
