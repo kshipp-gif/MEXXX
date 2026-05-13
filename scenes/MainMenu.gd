@@ -5,6 +5,7 @@
 extends Control
 
 signal scene_transition(target: String)
+signal codex_requested
 
 func _ready() -> void:
 	$VBox/NewGameButton.pressed.connect(_on_new_game)
@@ -21,8 +22,7 @@ func _on_load_game() -> void:
 	push_warning("MainMenu: Load Game not yet implemented.")
 
 func _on_codex() -> void:
-	# Stub — Codex not yet implemented.
-	push_warning("MainMenu: Codex not yet implemented.")
+	codex_requested.emit()
 
 func _on_settings() -> void:
 	# Stub — Settings not yet implemented.

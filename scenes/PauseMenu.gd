@@ -18,7 +18,7 @@ func _on_resume() -> void:
 	action_requested.emit("resume")
 
 func _on_codex() -> void:
-	push_warning("PauseMenu: Codex not yet implemented.")
+	action_requested.emit("codex")
 
 func _on_settings() -> void:
 	push_warning("PauseMenu: Settings not yet implemented.")

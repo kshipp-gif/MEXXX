@@ -25,6 +25,7 @@ var _run_active: bool = false
 @onready var _viewport_container: SubViewportContainer = $GameViewportContainer
 @onready var _game_viewport: SubViewport = $GameViewportContainer/GameViewport
 @onready var _pause_menu = $PauseLayer/PauseMenu
+@onready var _codex_screen = $CodexLayer/CodexScreen
 
 ## Shared ShaderMaterial applied to the viewport container for blur.
 var _blur_material: ShaderMaterial = null
@@ -82,6 +83,8 @@ func _switch_to_main_menu() -> void:
 
 	if _active_scene.has_signal("scene_transition"):
 		_active_scene.scene_transition.connect(_on_main_menu_transition)
+	if _active_scene.has_signal("codex_requested"):
+		_active_scene.codex_requested.connect(open_codex)
 
 ## Load and activate the BaseScene.
 func _switch_to_base() -> void:
@@ -137,6 +140,8 @@ func _on_pause_action(action: String) -> void:
 	match action:
 		"resume":
 			_close_pause_menu()
+		"codex":
+			_codex_screen.open_codex()
 		"abandon":
 			_close_pause_menu()
 			_switch_to_main_menu()
@@ -148,3 +153,7 @@ func _on_pause_action(action: String) -> void:
 			push_warning("Main: save not yet implemented — quitting.")
 			_close_pause_menu()
 			get_tree().quit()
+
+## Open the Codex overlay. Called by MainMenu and PauseMenu via signal.
+func open_codex() -> void:
+	_codex_screen.open_codex()
