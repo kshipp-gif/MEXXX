@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://char_select"]
+
+[ext_resource type="Script" path="res://scenes/CharacterSelectScreen.gd" id="1_cs"]
+
+[node name="CharacterSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_cs")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Choose Your Mech"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+
+[node name="SelectionArea" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="MechList" type="VBoxContainer" parent="VBox/SelectionArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_constants/separation = 8
+
+[node name="InfoPanel" type="VBoxContainer" parent="VBox/SelectionArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="NameLabel" type="Label" parent="VBox/SelectionArea/InfoPanel"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 22
+
+[node name="DescLabel" type="Label" parent="VBox/SelectionArea/InfoPanel"]
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ItemsLabel" type="Label" parent="VBox/SelectionArea/InfoPanel"]
+layout_mode = 2
+text = ""
+
+[node name="ButtonRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="VBox/ButtonRow"]
+layout_mode = 2
+text = "Back"
+
+[node name="ConfirmButton" type="Button" parent="VBox/ButtonRow"]
+layout_mode = 2
+text = "Start Run"
+disabled = true

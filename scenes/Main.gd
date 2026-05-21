@@ -15,6 +15,7 @@ const BLUR_SHADER: Shader = preload("res://assets/shaders/blur.gdshader")
 const BLUR_AMOUNT: float = 4.0
 
 @export var main_menu_path: String = "res://scenes/MainMenu.tscn"
+@export var character_select_path: String = "res://scenes/CharacterSelectScreen.tscn"
 @export var combat_scene_path: String = "res://scenes/CombatScene.tscn"
 @export var base_scene_path: String = "res://scenes/BaseScene.tscn"
 
@@ -125,7 +126,41 @@ func _remove_active_scene() -> void:
 
 func _on_main_menu_transition(target: String) -> void:
 	if target == "game":
-		_switch_to_base()
+		_switch_to_character_select()
+
+## Load and activate the CharacterSelectScreen.
+func _switch_to_character_select() -> void:
+	_remove_active_scene()
+
+	var packed: PackedScene = load(character_select_path)
+	if packed == null:
+		push_error("Main: could not load CharacterSelectScreen from " + character_select_path)
+		return
+
+	_active_scene = packed.instantiate()
+	_game_viewport.add_child(_active_scene)
+
+	if _active_scene.has_signal("mech_selected"):
+		_active_scene.mech_selected.connect(_on_mech_selected)
+	if _active_scene.has_signal("scene_transition"):
+		_active_scene.scene_transition.connect(_on_character_select_transition)
+
+## Called when the player confirms a mech on the character select screen.
+func _on_mech_selected(definition: Resource) -> void:
+	# Initialise GameState with the chosen mech's starting items.
+	GameState.inventory.clear()
+	GameState.current_season = 0
+	GameState.run_active = true
+	for item in definition.starting_items:
+		var typed_item: Item = item as Item
+		if typed_item != null:
+			GameState.add_item(typed_item)
+	_switch_to_base()
+
+## Called when CharacterSelectScreen emits scene_transition("main_menu").
+func _on_character_select_transition(target: String) -> void:
+	if target == "main_menu":
+		_switch_to_main_menu()
 
 func _on_base_scene_transition(target: String) -> void:
 	if target == "combat":
