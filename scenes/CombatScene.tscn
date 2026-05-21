@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://combat001"]
+
+[ext_resource type="PackedScene" uid="uid://mech001" path="res://nodes/Mech.tscn" id="1_mech"]
+[ext_resource type="Script" uid="uid://dgxxta5ioapp8" path="res://scenes/CombatScene.gd" id="2_cscn"]
+[ext_resource type="Script" uid="uid://cm5u8gwom2xm6" path="res://components/managers/DeckManager.gd" id="3_deck"]
+[ext_resource type="Script" uid="uid://cwvnkgyw41k8q" path="res://components/managers/HandManager.gd" id="4_hand"]
+[ext_resource type="Script" uid="uid://brc86s71m6qgf" path="res://components/managers/CombatTurnManager.gd" id="5_ctm"]
+[ext_resource type="Script" uid="uid://beaey60d4xvj1" path="res://components/managers/BattlefieldManager.gd" id="6_bfm"]
+[ext_resource type="Script" uid="uid://chjp2pgspd2kd" path="res://scenes/HandDisplay.gd" id="7_hdisp"]
+[ext_resource type="PackedScene" uid="uid://bwk62crwbt37i" path="res://TestCard.tscn" id="8_testcard"]
+[ext_resource type="PackedScene" path="res://scenes/CardInspectPanel.tscn" id="9_cip"]
+
+[node name="CombatScene" type="Node" unique_id=1160832317]
+script = ExtResource("2_cscn")
+
+[node name="Mech" parent="." unique_id=1798548122 instance=ExtResource("1_mech")]
+
+[node name="DeckManager" type="Node" parent="." unique_id=899274803]
+script = ExtResource("3_deck")
+
+[node name="HandManager" type="Node" parent="." unique_id=451073073]
+script = ExtResource("4_hand")
+
+[node name="CombatTurnManager" type="Node" parent="." unique_id=702170268]
+script = ExtResource("5_ctm")
+
+[node name="BattlefieldManager" type="Node" parent="." unique_id=1762626187]
+script = ExtResource("6_bfm")
+
+[node name="Enemies" type="Node" parent="." unique_id=689412361]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=50470713]
+
+[node name="EndTurnButton" type="Button" parent="UI" unique_id=1718544569]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 140.0
+offset_bottom = 48.0
+disabled = true
+text = "End Turn"
+
+[node name="HandDisplay" type="Node2D" parent="UI" unique_id=467561784]
+script = ExtResource("7_hdisp")
+
+[node name="DiscardPile" type="Control" parent="UI" unique_id=1272318015]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="DiscardLabel" type="Label" parent="UI/DiscardPile" unique_id=548217096]
+layout_mode = 0
+offset_right = 134.0
+offset_bottom = 24.0
+text = "Discard"
+horizontal_alignment = 1
+
+[node name="DiscardPileCard" parent="UI/DiscardPile" unique_id=590616655 instance=ExtResource("8_testcard")]
+modulate = Color(0.55, 0.55, 0.65, 1)
+position = Vector2(67, 107)
+
+[node name="DiscardCountLabel" type="Label" parent="UI/DiscardPile" unique_id=1161916797]
+layout_mode = 0
+offset_top = 158.0
+offset_right = 134.0
+offset_bottom = 182.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="DrawPile" type="Control" parent="UI" unique_id=862652946]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -200.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="DrawLabel" type="Label" parent="UI/DrawPile" unique_id=979581175]
+layout_mode = 0
+offset_right = 134.0
+offset_bottom = 24.0
+text = "Draw"
+horizontal_alignment = 1
+
+[node name="DrawPileCard" parent="UI/DrawPile" unique_id=909893493 instance=ExtResource("8_testcard")]
+position = Vector2(67, 107)
+
+[node name="DrawCountLabel" type="Label" parent="UI/DrawPile" unique_id=1676144214]
+layout_mode = 0
+offset_top = 158.0
+offset_right = 134.0
+offset_bottom = 182.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="CardInspectPanel" parent="UI" unique_id=1432883020 instance=ExtResource("9_cip")]
+grow_horizontal = 2
+grow_vertical = 2
