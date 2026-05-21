@@ -1,5 +1,4 @@
 ## CombatTurnManager — sequences player and enemy turns; checks end conditions.
-## Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 9.1, 9.2, 9.3, 17.5
 extends Node
 
 enum TurnOwner { PLAYER, ENEMY }
@@ -107,7 +106,6 @@ func _reset_mech_damage_flag() -> void:
 ## Tick status effects on a unit at the start of its turn.
 ## Resets block to 0 first (block does not carry over between turns),
 ## then finds the first StatusEffectManager child and calls tick_effects() on it.
-## Requirements: 3.1, 3.2, 3.3, 3.4, 8.1, 8.7
 func _tick_unit_effects(unit: Node) -> void:
 	if unit == null:
 		return

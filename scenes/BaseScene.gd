@@ -1,7 +1,6 @@
 ## BaseScene — root script that subscribes to EventBus events and updates UI labels.
 ## Handles season_advanced and base_health_changed signals from BaseManager.
 ## Emits scene_transition when combat is triggered so Main.tscn can switch scenes.
-## Requirements: 12.1, 12.5, 12.6
 extends Node
 
 ## Emitted when the base phase should hand off to the combat scene.

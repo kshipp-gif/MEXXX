@@ -2,7 +2,6 @@ extends EnemyBehavior
 class_name MoveTowardBaseBehavior
 
 ## Moves the enemy one tile toward the Base end (x = 0) each turn.
-## Requirements: 8.4, 17.1
 
 func decide(context: Dictionary) -> void:
 	var enemy = context["enemy"]

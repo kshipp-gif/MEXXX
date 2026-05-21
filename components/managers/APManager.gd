@@ -1,5 +1,4 @@
 ## APManager — tracks and manages Action Points for the Mech during combat.
-## Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7
 extends Node
 
 @export var max_ap: int = 4

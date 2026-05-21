@@ -1,6 +1,5 @@
 ## EventBus autoload singleton for MEXXX Mech Deckbuilder.
 ## Routes named game signals between Components without direct references.
-## Requirements: 18.1, 18.2, 18.3, 18.4
 extends Node
 
 # Internal registry: event_name -> Array[Callable]

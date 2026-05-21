@@ -1,6 +1,5 @@
 ## SlotManager manages the Mech's five named Slots and enforces equip rules
 ## via a composable list of SlotRule resources.
-## Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 19.1, 19.3, 19.4, 19.5
 extends Node
 
 const SLOT_NAMES := ["L_Arm", "R_Arm", "Legs", "Back", "Head"]

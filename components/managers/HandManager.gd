@@ -1,6 +1,5 @@
 ## HandManager — tracks the player's hand and manages card playability.
 ## Subscribes to ap_changed on EventBus to refresh playability whenever AP changes.
-## Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 10.2, 10.5
 extends Node
 
 var deck_manager: Node = null

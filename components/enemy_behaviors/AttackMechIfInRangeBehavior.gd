@@ -2,7 +2,6 @@ extends EnemyBehavior
 class_name AttackMechIfInRangeBehavior
 
 ## Attacks the Mech if it is within attack_range tiles (Chebyshev distance).
-## Requirements: 8.4, 17.1
 
 @export var attack_range: int = 1
 @export var damage: int = 1

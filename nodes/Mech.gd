@@ -2,7 +2,6 @@
 ## Extends CharacterBody2D; all behaviour is provided by attached Component scripts.
 ## Subscribes to the EventBus `slot_changed` event to apply/remove Passive effects
 ## when the Head Slot item changes.
-## Requirements: 11.1, 11.2, 14.1
 extends CharacterBody2D
 
 ## Maximum hit points for this Mech.

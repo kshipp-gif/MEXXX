@@ -1,5 +1,4 @@
 ## SlotOccupiedRule rejects any equip attempt into a slot that is already occupied.
-## Requirements: 1.3, 1.6, 19.1
 extends SlotRule
 class_name SlotOccupiedRule
 

@@ -1,5 +1,4 @@
 ## Status effect that increases damage received by 25%.
-## Requirements: 6.1, 6.3
 extends StatusEffect
 class_name VulnerableEffect
 

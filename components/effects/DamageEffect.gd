@@ -1,5 +1,4 @@
 ## Deals a fixed amount of damage to the target unit.
-## Requirements: 16.1, 16.2, 16.3, 16.4, 16.5
 extends Effect
 class_name DamageEffect
 

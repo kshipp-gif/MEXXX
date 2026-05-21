@@ -1,7 +1,6 @@
 ## BaseManager — tracks Base health and manages the out-of-combat phase.
 ## Advances seasons, triggers combat every seasons_per_combat turns,
 ## generates weighted-random events, and applies event outcomes to GameState.
-## Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 13.1, 13.2, 13.3, 13.4
 extends Node
 class_name BaseManager
 
@@ -33,7 +32,6 @@ func _emit(event_name: String, payload: Dictionary) -> void:
 		_event_bus.emit(event_name, payload)
 
 ## Advance the season by 1, emit season_advanced, and trigger combat if needed.
-## Requirements: 12.1, 12.2, 12.6
 func advance_season() -> void:
 	current_season += 1
 	_emit("season_advanced", { "season": current_season })
@@ -42,7 +40,6 @@ func advance_season() -> void:
 
 ## Generate a weighted-random selection of 0–3 RandomEvent resources from event_pool.
 ## Uses the event's `weight` property if present; otherwise treats all events equally.
-## Requirements: 12.3, 13.1
 func generate_events() -> Array[RandomEvent]:
 	if event_pool.is_empty():
 		return []
@@ -92,7 +89,6 @@ func generate_events() -> Array[RandomEvent]:
 
 ## Apply the outcome of a player's choice within a RandomEvent.
 ## If the chosen EventChoice has an item_reward, it is added to GameState inventory.
-## Requirements: 12.4, 13.3, 13.4
 func apply_event_outcome(event: RandomEvent, choice_index: int) -> void:
 	if event == null:
 		return
@@ -106,7 +102,6 @@ func apply_event_outcome(event: RandomEvent, choice_index: int) -> void:
 
 ## Modify the Base's HP by delta (positive = heal, negative = damage).
 ## Clamps result to [0, max_base_hp] and emits base_health_changed.
-## Requirements: 12.5
 func modify_hp(delta: int) -> void:
 	current_hp = clamp(current_hp + delta, 0, max_base_hp)
 	_emit("base_health_changed", { "current_hp": current_hp, "max_hp": max_base_hp })

@@ -1,5 +1,4 @@
 ## Reloads the ammo on the caster's source item.
-## Requirements: 16.1, 16.2, 16.3, 16.4, 16.5
 extends Effect
 class_name ReloadEffect
 

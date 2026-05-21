@@ -8,7 +8,6 @@
 ##   BaseScene.scene_transition("combat") → CombatScene
 ##   EventBus "combat_ended"           → BaseScene
 ##
-## Requirements: 8.7, 9.1, 9.2, 12.2
 extends Node
 
 const BLUR_SHADER: Shader = preload("res://assets/shaders/blur.gdshader")

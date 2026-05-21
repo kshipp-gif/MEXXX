@@ -1,5 +1,4 @@
 ## Moves the caster N tiles toward the target via BattlefieldManager.
-## Requirements: 16.1, 16.2, 16.3, 16.4, 16.5
 extends Effect
 class_name MoveEffect
 

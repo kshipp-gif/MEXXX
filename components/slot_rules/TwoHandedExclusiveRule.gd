@@ -6,7 +6,6 @@
 ##
 ## On rejection, returns { "permitted": false, "reason": "arm_slots_occupied" }.
 ##
-## Requirements: 1.4, 1.5, 1.7
 extends SlotRule
 class_name TwoHandedExclusiveRule
 

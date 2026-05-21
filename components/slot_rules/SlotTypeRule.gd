@@ -7,7 +7,6 @@
 ##   Back         → Enums.SlotType.BACK
 ##   Head         → Enums.SlotType.HEAD
 ##
-## Requirements: 1.2, 19.6
 extends SlotRule
 class_name SlotTypeRule
 

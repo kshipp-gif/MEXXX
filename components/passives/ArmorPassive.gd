@@ -1,7 +1,6 @@
 ## Passive that adds a flat armor bonus to the target node.
 ## Adds armor_amount to target.armor_bonus on apply,
 ## and subtracts it on remove.
-## Requirements: 11.1, 11.2, 11.3, 11.4
 extends Passive
 class_name ArmorPassive
 

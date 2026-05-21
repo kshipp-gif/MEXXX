@@ -1,7 +1,6 @@
 ## Represents a single card in the MEXXX Mech Deckbuilder.
 ## Cards are data Resources assembled into a Deck from equipped Item CardSets.
 ## Tags belong to the source Item, not the card — use source_item.has_tag() for tag checks.
-## Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 15.4
 extends Resource
 class_name Card
 

@@ -1,6 +1,5 @@
 ## DeckManager assembles, shuffles, and manages the three card collections:
 ## deck, hand, and discard_pile.
-## Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8
 extends Node
 
 var deck: Array[Card] = []
