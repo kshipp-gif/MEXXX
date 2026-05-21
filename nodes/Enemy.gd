@@ -1,7 +1,6 @@
 ## Enemy node — an enemy unit on the Battlefield.
 ## Extends Node2D; behaviour is driven by an array of EnemyBehavior resources.
 ## The inherited `name` property serves as the unit_id for BattlefieldManager.
-## Requirements: 17.1, 17.3
 extends Node2D
 
 ## Maximum hit points for this Enemy.

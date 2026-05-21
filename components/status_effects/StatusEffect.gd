@@ -1,7 +1,6 @@
 ## Base class for all Status Effects in the MEXXX Mech Deckbuilder.
 ## Status effects are temporary, turn-counted conditions applied to units.
 ## Subclasses override apply() and remove() to implement specific modifiers.
-## Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6
 extends Resource
 class_name StatusEffect
 

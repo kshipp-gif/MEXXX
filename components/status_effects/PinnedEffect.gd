@@ -1,5 +1,4 @@
 ## Status effect that prevents a unit from moving.
-## Requirements: 4.1, 4.3
 extends StatusEffect
 class_name PinnedEffect
 

@@ -2,7 +2,6 @@
 ## the attacker receives 1 damage per stack of Retaliation.
 ## Stacks are tracked via the StatusEffectManager's additive duration system:
 ## each application adds to duration, and duration == number of stacks.
-## Requirements: status-effects
 extends StatusEffect
 class_name RetaliationEffect
 

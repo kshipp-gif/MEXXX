@@ -1,7 +1,6 @@
 ## Base class for all card Effects in the MEXXX Mech Deckbuilder.
 ## Effects are Resource subclasses executed when a Card is played.
 ## Subclasses override execute() to implement specific behaviour.
-## Requirements: 16.1, 16.3
 extends Resource
 class_name Effect
 

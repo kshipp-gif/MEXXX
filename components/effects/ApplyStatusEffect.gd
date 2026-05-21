@@ -1,6 +1,5 @@
 ## Applies a StatusEffect resource to one or more targets when a card is played.
 ## target_type controls who receives the effect: "target", "caster", or "all_enemies".
-## Requirements: 7.1, 7.2, 7.3, 7.4, 7.5
 extends Effect
 class_name ApplyStatusEffect
 

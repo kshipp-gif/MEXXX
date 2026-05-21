@@ -1,6 +1,5 @@
 ## Represents an equippable Item in the MEXXX Mech Deckbuilder.
 ## Items are equipped into Mech Slots and may contribute a CardSet to the Deck.
-## Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 10.1, 10.3, 10.4
 extends Resource
 class_name Item
 

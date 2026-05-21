@@ -1,5 +1,4 @@
 ## Status effect that halves the block a unit gains.
-## Requirements: 5.1, 5.3
 extends StatusEffect
 class_name BrittleEffect
 

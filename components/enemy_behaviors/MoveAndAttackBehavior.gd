@@ -3,7 +3,6 @@ class_name MoveAndAttackBehavior
 
 ## Composite behavior: moves toward the Base end (x = 0), then attacks the
 ## Mech if it is within attack_range tiles (Chebyshev distance).
-## Requirements: 8.4, 17.4
 
 @export var attack_range: int = 1
 @export var damage: int = 1

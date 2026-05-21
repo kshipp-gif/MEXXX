@@ -1,5 +1,4 @@
 ## Autoload singleton that tracks global run state for the player.
-## Requirements: 12.1, 13.3
 extends Node
 
 ## Player's current item inventory (items acquired but not necessarily equipped).

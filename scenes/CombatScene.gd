@@ -1,6 +1,5 @@
 ## CombatScene — root script that wires cross-manager references on startup
 ## and exposes _start_combat() for Main to call after instantiation.
-## Requirements: 8.1, 8.2, 8.3, 14.6, 18.5
 extends Node
 
 func _ready() -> void:

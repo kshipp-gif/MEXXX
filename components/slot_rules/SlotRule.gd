@@ -1,7 +1,6 @@
 ## Base class for all SlotRule components.
 ## SlotRules are Resource subclasses that can be attached to a SlotManager
 ## to enforce equip constraints in a composable, data-driven way.
-## Requirements: 19.2
 extends Resource
 class_name SlotRule
 

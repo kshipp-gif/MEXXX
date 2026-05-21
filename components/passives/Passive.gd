@@ -2,7 +2,6 @@
 ## Passives are Resource subclasses applied to nodes (typically the Mech)
 ## when a Head Item is equipped, and removed when it is unequipped.
 ## Subclasses override apply() and remove() to implement specific behaviour.
-## Requirements: 11.3, 11.4
 extends Resource
 class_name Passive
 

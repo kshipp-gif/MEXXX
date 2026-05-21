@@ -1,6 +1,5 @@
 ## Grants block to the target unit, scaled by the unit's block_multiplier.
 ## Block is floored (not rounded) and clamped to a minimum of 0.
-## Requirements: 8.1, 8.5, 8.6, 8.7
 extends Effect
 class_name GainBlockEffect
 
