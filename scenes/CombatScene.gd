@@ -17,6 +17,17 @@ func _ready() -> void:
 	$UI/HandDisplay.discard_count_label = $UI/DiscardPile/DiscardCountLabel
 	$UI/HandDisplay.inspect_panel = $UI/CardInspectPanel
 
+	# Wire BattlefieldGrid to BattlefieldManager for grid display.
+	if $GridLayer/BattlefieldGrid == null:
+		push_warning("CombatScene: BattlefieldGrid node not found — skipping grid wiring.")
+	elif $BattlefieldManager == null:
+		push_warning("CombatScene: BattlefieldManager node not found — skipping grid wiring.")
+	else:
+		$GridLayer/BattlefieldGrid.battlefield_manager = $BattlefieldManager
+		$BattlefieldManager.grid_width = 12
+		$BattlefieldManager.grid_height = 12
+		$BattlefieldManager.place_unit(&"mech", Vector2i(6, 11), $Mech)
+
 	# Subscribe DeckManager to slot_changed so it rebuilds the deck on equip changes.
 	EventBus.subscribe("slot_changed", _on_slot_changed)
 

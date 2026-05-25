@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" format=3]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
+[ext_resource type="Script" path="res://components/effects/MultiTargetDamageEffect.gd" id="2_eff"]
+
+[sub_resource type="Resource" id="Resource_001"]
+script = ExtResource("2_eff")
+damage_per_hit = 3
+total_hits = 3
+max_targets = 3
+allow_movement_between_hits = true
+
+[resource]
+script = ExtResource("1_card")
+display_name = "Serpent Dance"
+ap_cost = 5
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_001")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

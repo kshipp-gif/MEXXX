@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://brc86s71m6qgf" path="res://components/managers/CombatTurnManager.gd" id="5_ctm"]
 [ext_resource type="Script" uid="uid://beaey60d4xvj1" path="res://components/managers/BattlefieldManager.gd" id="6_bfm"]
 [ext_resource type="Script" uid="uid://chjp2pgspd2kd" path="res://scenes/HandDisplay.gd" id="7_hdisp"]
+[ext_resource type="Script" path="res://components/BattlefieldGrid.gd" id="10_bfg"]
 [ext_resource type="PackedScene" uid="uid://bwk62crwbt37i" path="res://TestCard.tscn" id="8_testcard"]
 [ext_resource type="PackedScene" path="res://scenes/CardInspectPanel.tscn" id="9_cip"]
 
@@ -26,6 +27,13 @@ script = ExtResource("5_ctm")
 
 [node name="BattlefieldManager" type="Node" parent="." unique_id=1762626187]
 script = ExtResource("6_bfm")
+
+[node name="GridLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="BattlefieldGrid" type="Node2D" parent="GridLayer"]
+position = Vector2(288, 36)
+script = ExtResource("10_bfg")
 
 [node name="Enemies" type="Node" parent="." unique_id=689412361]
 
