@@ -27,6 +27,8 @@ func _emit(event_name: String, payload: Dictionary) -> void:
 func place_unit(unit_id: StringName, pos: Vector2i, unit_node: Node = null) -> void:
 	_positions[unit_id] = pos
 	_unit_nodes[unit_id] = unit_node
+	var side: String = "player" if unit_id == &"mech" else "enemy"
+	_emit("unit_placed", {"unit_id": unit_id, "pos": pos, "side": side})
 
 ## Return the Node associated with unit_id, or null if none was registered.
 func _get_unit_node(unit_id: StringName) -> Node:
@@ -58,7 +60,9 @@ func move_unit(unit_id: StringName, dest: Vector2i) -> bool:
 			"reason": "tile_occupied"
 		})
 		return false
+	var old_pos: Vector2i = _positions.get(unit_id, Vector2i(-1, -1))
 	_positions[unit_id] = dest
+	_emit("unit_moved", {"unit_id": unit_id, "from": old_pos, "to": dest})
 	return true
 
 ## Return Chebyshev distance between two tile coordinates.
@@ -84,3 +88,17 @@ func is_tile_free(pos: Vector2i) -> bool:
 		if _positions[uid] == pos:
 			return false
 	return true
+
+## Return the unit_id of whatever occupies pos, or empty StringName if none.
+func get_unit_at(pos: Vector2i) -> StringName:
+	for uid in _positions:
+		if _positions[uid] == pos:
+			return uid
+	return &""
+
+## Return the Node registered at pos, or null if none.
+func get_unit_node_at(pos: Vector2i) -> Node:
+	var uid: StringName = get_unit_at(pos)
+	if uid == &"":
+		return null
+	return _unit_nodes.get(uid, null)

@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_xlikc")
-mech_id = "mech_a"
-display_name = "Mech A"
-description = "A versatile mech often used to train new pilots."
+mech_id = "test_mech"
+display_name = "Test Mech"
+description = "A test mech pre-loaded with a Broadsword and its full card set."
 starting_items = Array[Resource]([ExtResource("2_lpcuy")])
 metadata/_custom_type_script = "uid://d0nxicvlr2e1r"

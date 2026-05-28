@@ -10,8 +10,8 @@ extends CharacterBody2D
 ## Current hit points; initialised to max_hp in _ready().
 @export var current_hp: int = 0
 
-## Flat armor bonus applied before incoming damage (modified by ArmorPassive).
-@export var armor_bonus: int = 0
+## Starting armor value. Absorbs damage before HP. Persists between turns.
+@export var armor: int = 10
 
 ## HP regenerated per turn (modified by RegenPassive).
 @export var regen_per_turn: int = 0
@@ -19,14 +19,11 @@ extends CharacterBody2D
 ## Whether this Mech is pinned (cannot move). Set by PinnedEffect.
 var is_pinned: bool = false
 
-## Multiplier applied to block gains. Set by BrittleEffect (0.5 when brittle).
-var block_multiplier: float = 1.0
+## Multiplier applied to armor gains. Set by BrittleEffect (0.5 when brittle).
+var armor_multiplier: float = 1.0
 
 ## Multiplier applied to incoming damage. Set by VulnerableEffect (1.25 when vulnerable).
 var damage_multiplier: float = 1.0
-
-## Current block points. Absorbs incoming damage before armor and HP. Resets each turn.
-var block: int = 0
 
 ## Set to true if the Mech took any HP damage during the last enemy turn.
 ## Reset to false at the start of each player turn by CombatTurnManager.
@@ -37,6 +34,7 @@ var _head_item = null
 
 func _ready() -> void:
 	current_hp = max_hp
+	add_to_group("mech")
 	EventBus.subscribe("slot_changed", _on_slot_changed)
 
 func _exit_tree() -> void:
@@ -62,24 +60,25 @@ func _on_slot_changed(payload: Dictionary) -> void:
 		for passive in new_item.passives:
 			passive.apply(self)
 
-## Reduce current_hp by the incoming amount, applying block absorption first,
-## then armor reduction, then damage_multiplier (rounded to nearest).
+## Reduce current_hp by the incoming amount, applying armor absorption first,
+## then damage_multiplier (rounded to nearest).
 ## If attacker is provided and this unit has Retaliation stacks, the attacker
 ## takes 1 damage per stack.
 func take_damage(amount: int, attacker: Node = null) -> void:
-	var absorbed: int = min(block, amount)
-	block -= absorbed
+	var absorbed: int = min(armor, amount)
+	armor -= absorbed
 	amount -= absorbed
 	if amount <= 0:
+		_trigger_retaliation(attacker)
 		return
-	var effective: int = max(0, amount - armor_bonus)
-	effective = roundi(effective * damage_multiplier)
+	var effective: int = roundi(amount * damage_multiplier)
 	if effective > 0:
 		current_hp = max(0, current_hp - effective)
 		took_damage_last_enemy_turn = true
 	_trigger_retaliation(attacker)
 
 ## Deal retaliation damage back to the attacker if this unit has Retaliation active.
+## Retaliation fires once then is consumed (stacks set to 0 so it expires).
 func _trigger_retaliation(attacker: Node) -> void:
 	if attacker == null:
 		return
@@ -89,7 +88,8 @@ func _trigger_retaliation(attacker: Node) -> void:
 				var stacks: int = 0
 				for effect in child.get_active_effects():
 					if effect.status_name == "retaliation":
-						stacks = effect.duration
+						stacks = effect.stacks
+						effect.stacks = 0  # consumed after one use
 						break
 				if stacks > 0 and attacker.has_method("take_damage"):
 					attacker.take_damage(stacks)

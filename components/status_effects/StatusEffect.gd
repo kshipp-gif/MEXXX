@@ -1,6 +1,9 @@
 ## Base class for all Status Effects in the MEXXX Mech Deckbuilder.
-## Status effects are temporary, turn-counted conditions applied to units.
-## Subclasses override apply() and remove() to implement specific modifiers.
+## Status effects are temporary conditions applied to units, tracked by stacks.
+##
+## For most effects, stacks = duration (decrements by 1 each turn, removed at 0).
+## Subclasses can override tick() to implement custom stack behavior
+## (e.g., Acid uses stacks as damage and halves each turn).
 extends Resource
 class_name StatusEffect
 
@@ -8,8 +11,9 @@ class_name StatusEffect
 ## Set by subclasses in _init(). Not exported — subclasses own this value.
 var status_name: String = ""
 
-## Number of turns remaining. Decremented by tick(). Effect expires when 0.
-@export var duration: int = 1
+## Number of stacks. For most effects this is the duration (turns remaining).
+## Subclasses may interpret stacks differently (e.g., damage amount).
+@export var stacks: int = 1
 
 ## Activate this effect's modifier on the target unit.
 ## Subclasses set properties on the unit (e.g. unit.is_pinned = true).
@@ -21,10 +25,12 @@ func apply(unit: Node) -> void:
 func remove(unit: Node) -> void:
 	pass  # no-op override point
 
-## Decrement duration by 1. Called by StatusEffectManager.tick_effects().
+## Called each turn by StatusEffectManager.tick_effects().
+## Default behavior: decrement stacks by 1 (acts as duration countdown).
+## Subclasses override this for custom behavior (e.g., deal damage then halve stacks).
 func tick() -> void:
-	duration -= 1
+	stacks -= 1
 
-## Returns true when the effect has expired (duration <= 0).
+## Returns true when the effect should be removed (stacks <= 0).
 func is_expired() -> bool:
-	return duration <= 0
+	return stacks <= 0
