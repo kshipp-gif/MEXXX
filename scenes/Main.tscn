@@ -1,27 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://main001"]
+[gd_scene format=3 uid="uid://main001"]
 
-[ext_resource type="Script" path="res://scenes/Main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://dxs67dyiw3msl" path="res://scenes/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/PauseMenu.tscn" id="2_pm"]
 [ext_resource type="PackedScene" path="res://scenes/CodexScreen.tscn" id="3_cs"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=65838864]
 script = ExtResource("1_main")
 
-[node name="GameViewportContainer" type="SubViewportContainer" parent="."]
+[node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=2070371109]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
 
-[node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=992609795]
 handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
-[node name="PauseLayer" type="CanvasLayer" parent="."]
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1482533836]
 layer = 128
 
-[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("2_pm")]
+[node name="PauseMenu" parent="PauseLayer" unique_id=1971873506 instance=ExtResource("2_pm")]
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CodexLayer" type="CanvasLayer" parent="."]
+[node name="CodexLayer" type="CanvasLayer" parent="." unique_id=1582534690]
 layer = 129
 
-[node name="CodexScreen" parent="CodexLayer" instance=ExtResource("3_cs")]
+[node name="CodexScreen" parent="CodexLayer" unique_id=1564480614 instance=ExtResource("3_cs")]
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bu3m0gwy606o1"]
+
+[ext_resource type="Script" uid="uid://cpynf4jpao2qd" path="res://components/status_effects/AcidEffect.gd" id="1_qgcv3"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_r7enq"]
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_tuu6r"]
+
+[sub_resource type="Resource" id="Resource_5mbnm"]
+script = ExtResource("1_tuu6r")
+amount = 10
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[sub_resource type="Resource" id="Resource_tuu6r"]
+script = ExtResource("1_qgcv3")
+damage_per_tick = 2
+duration = 999
+metadata/_custom_type_script = "uid://cpynf4jpao2qd"
+
+[resource]
+script = ExtResource("1_r7enq")
+display_name = "Containment Protocol"
+ap_cost = 1
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_5mbnm"), SubResource("Resource_tuu6r")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

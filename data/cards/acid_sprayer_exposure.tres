@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://diht8yn8omchc"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_qsan5"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_wpb3e"]
+[ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_f5o4u"]
+
+[sub_resource type="Resource" id="Resource_dwxyb"]
+script = ExtResource("1_wpb3e")
+amount = 5
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_p54nv"]
+script = ExtResource("2_f5o4u")
+metadata/_custom_type_script = "uid://cjpaea8c0c6ci"
+
+[resource]
+script = ExtResource("1_qsan5")
+display_name = "Exposure"
+ap_cost = 1
+effects = Array[Resource]([SubResource("Resource_dwxyb"), SubResource("Resource_p54nv")])
+range_value = 3
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

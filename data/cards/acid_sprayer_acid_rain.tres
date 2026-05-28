@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://caea11olaujdc"]
+
+[ext_resource type="Script" uid="uid://cpynf4jpao2qd" path="res://components/status_effects/AcidEffect.gd" id="1_ut4pw"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_y667n"]
+
+[sub_resource type="Resource" id="Resource_ut4pw"]
+script = ExtResource("1_ut4pw")
+damage_per_tick = 5
+duration = 999
+metadata/_custom_type_script = "uid://cpynf4jpao2qd"
+
+[resource]
+script = ExtResource("1_y667n")
+display_name = "Acid Rain"
+ap_cost = 2
+effects = Array[Resource]([SubResource("Resource_ut4pw")])
+range_value = 3
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"
