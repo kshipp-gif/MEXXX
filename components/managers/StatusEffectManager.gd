@@ -29,11 +29,11 @@ func _emit(event_name: String, payload: Dictionary) -> void:
 func add_effect(effect: StatusEffect) -> void:
 	for existing in _active_effects:
 		if existing.status_name == effect.status_name:
-			existing.duration += effect.duration
+			existing.stacks += effect.stacks
 			_emit("status_effect_applied", {
 				"unit": _host,
 				"status_name": effect.status_name,
-				"duration": existing.duration
+				"stacks": existing.stacks
 			})
 			return
 	_active_effects.append(effect)
@@ -41,7 +41,7 @@ func add_effect(effect: StatusEffect) -> void:
 	_emit("status_effect_applied", {
 		"unit": _host,
 		"status_name": effect.status_name,
-		"duration": effect.duration
+		"stacks": effect.stacks
 	})
 
 ## Tick all active effects; remove and call remove() on any that have expired.

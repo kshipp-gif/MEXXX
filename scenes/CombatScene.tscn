@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://components/BattlefieldGrid.gd" id="10_bfg"]
 [ext_resource type="PackedScene" uid="uid://bwk62crwbt37i" path="res://TestCard.tscn" id="8_testcard"]
 [ext_resource type="PackedScene" path="res://scenes/CardInspectPanel.tscn" id="9_cip"]
+[ext_resource type="Script" path="res://scenes/StatusDisplay.gd" id="11_sd"]
 
 [node name="CombatScene" type="Node" unique_id=1160832317]
 script = ExtResource("2_cscn")
@@ -46,6 +47,17 @@ offset_right = 140.0
 offset_bottom = 48.0
 disabled = true
 text = "End Turn"
+
+[node name="StatusDisplay" type="Label" parent="UI"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 200.0
+horizontal_alignment = 2
+script = ExtResource("11_sd")
 
 [node name="HandDisplay" type="Node2D" parent="UI" unique_id=467561784]
 script = ExtResource("7_hdisp")

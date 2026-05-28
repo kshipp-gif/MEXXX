@@ -111,16 +111,13 @@ func _reset_mech_damage_flag() -> void:
 
 ## Reset mech block at the start of each player turn (block doesn't carry over).
 func _reset_mech_block() -> void:
-	if mech != null:
-		mech.set("block", 0)
+	pass  # Armor now persists between turns — no reset needed.
 
 ## Tick status effects on a unit at the start of its turn.
-## Resets block to 0 first (block does not carry over between turns),
-## then finds the first StatusEffectManager child and calls tick_effects() on it.
+## Finds the first StatusEffectManager child and calls tick_effects() on it.
 func _tick_unit_effects(unit: Node) -> void:
 	if unit == null:
 		return
-	unit.set("block", 0)   # block does not carry over between turns
 	for child in unit.get_children():
 		if child is StatusEffectManager:
 			child.tick_effects()

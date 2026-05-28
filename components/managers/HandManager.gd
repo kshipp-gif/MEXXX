@@ -7,6 +7,7 @@ const MultiTileEffect = preload("res://components/effects/MultiTileEffect.gd")
 var deck_manager: Node = null
 var ap_manager: Node = null
 var battlefield_manager: Node = null
+var mech: Node = null
 
 var _current_ap: int = 0
 var _hand_size: int = 5  # configurable hand size
@@ -67,7 +68,7 @@ func play_card(card: Card) -> bool:
 	
 	# Build base context with all required keys for multi-tile effects
 	var context: Dictionary = {
-		"caster": self,
+		"caster": mech,
 		"ap_manager": ap_manager,
 		"deck_manager": deck_manager,
 		"event_bus": EventBus,
