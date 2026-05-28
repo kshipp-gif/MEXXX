@@ -6,6 +6,7 @@ func _ready() -> void:
 	# Wire HandManager references.
 	$HandManager.deck_manager = $DeckManager
 	$HandManager.ap_manager = $Mech/APManager
+	$HandManager.battlefield_manager = $BattlefieldManager
 
 	# Wire CombatTurnManager references.
 	$CombatTurnManager.mech = $Mech

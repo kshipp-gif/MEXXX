@@ -1,7 +1,7 @@
 ## APManager — tracks and manages Action Points for the Mech during combat.
 extends Node
 
-@export var max_ap: int = 4
+@export var max_ap: int = 8
 var current_ap: int = 0
 
 ## EventBus instance used for emitting events.
@@ -10,6 +10,14 @@ var _event_bus: Node = null
 
 func _ready() -> void:
 	_event_bus = EventBus
+	EventBus.subscribe("turn_started", _on_turn_started)
+
+func _exit_tree() -> void:
+	EventBus.unsubscribe("turn_started", _on_turn_started)
+
+func _on_turn_started(payload: Dictionary) -> void:
+	if payload.get("owner", "") == "player":
+		reset()
 
 func _emit(event_name: String, payload: Dictionary) -> void:
 	if _event_bus != null:

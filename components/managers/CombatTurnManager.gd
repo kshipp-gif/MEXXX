@@ -17,7 +17,7 @@ var base_manager: Node = null
 func start_combat(enemy_nodes: Array[Node]) -> void:
 	enemies = enemy_nodes
 	current_turn = TurnOwner.PLAYER
-	_tick_unit_effects(mech)
+	_reset_mech_block()
 	_reset_mech_damage_flag()
 	EventBus.emit("turn_started", { "owner": "player" })
 
@@ -26,6 +26,12 @@ func start_combat(enemy_nodes: Array[Node]) -> void:
 ## then processes all enemy behaviors.
 func end_player_turn() -> void:
 	current_turn = TurnOwner.ENEMY
+	# Tick mech status effects at the start of the enemy turn (for Acid/poison).
+	_tick_unit_effects(mech)
+	# Tick all enemy status effects at the start of the enemy turn.
+	for enemy in enemies:
+		if enemy.has_method("is_alive") and enemy.is_alive():
+			_tick_unit_effects(enemy)
 	EventBus.emit("turn_started", { "owner": "enemy" })
 	_process_enemy_turn()
 
@@ -94,7 +100,7 @@ func _check_end_conditions() -> void:
 
 	# No end condition met — begin the next player turn
 	current_turn = TurnOwner.PLAYER
-	_tick_unit_effects(mech)
+	_reset_mech_block()
 	_reset_mech_damage_flag()
 	EventBus.emit("turn_started", { "owner": "player" })
 
@@ -102,6 +108,11 @@ func _check_end_conditions() -> void:
 func _reset_mech_damage_flag() -> void:
 	if mech != null:
 		mech.set("took_damage_last_enemy_turn", false)
+
+## Reset mech block at the start of each player turn (block doesn't carry over).
+func _reset_mech_block() -> void:
+	if mech != null:
+		mech.set("block", 0)
 
 ## Tick status effects on a unit at the start of its turn.
 ## Resets block to 0 first (block does not carry over between turns),

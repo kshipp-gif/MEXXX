@@ -18,5 +18,6 @@ script = ExtResource("1_hc27l")
 display_name = "Lunge"
 ap_cost = 2
 card_type = 4
+range_value = 1
 effects = Array[Resource]([SubResource("Resource_rem4t"), SubResource("Resource_q5uda")])
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

@@ -81,10 +81,26 @@ func _try_inspect(mouse_pos: Vector2) -> void:
 			get_viewport().set_input_as_handled()
 			return
 
-## Release the dragged card and snap it back to its home position.
+## Release the dragged card. If released in the upper half of the screen, play it.
+## Otherwise snap it back to its home position.
 func _finish_drag() -> void:
 	if _dragged_node == null:
 		return
+
+	var vp_size: Vector2 = get_viewport().get_visible_rect().size
+	var release_pos: Vector2 = get_viewport().get_mouse_position()
+
+	# If released in the upper half, attempt to play the card.
+	if release_pos.y < vp_size.y * 0.5:
+		var card_data: Card = _dragged_node.card_data if "card_data" in _dragged_node else null
+		if card_data != null:
+			_dragged_node.z_index = 0
+			_dragged_node = null
+			# Emit play request — HandManager will handle AP check, effects, and discard.
+			EventBus.emit("card_play_requested", {"card": card_data})
+			return
+
+	# Snap back to home position.
 	var idx: int = _hand_nodes.find(_dragged_node)
 	if idx >= 0:
 		_dragged_node.position = _home_positions[idx]

@@ -17,5 +17,6 @@ script = ExtResource("1_card")
 display_name = "Slither"
 ap_cost = 1
 card_type = 2
+range_value = 1
 effects = Array[Resource]([SubResource("Resource_move"), SubResource("Resource_buff")])
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

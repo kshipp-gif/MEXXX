@@ -27,20 +27,31 @@ const ZOOM_MAX: float = 1.0
 const ZOOM_STEP: float = 0.1
 var _zoom: float = 1.0
 
+## Tile selection state
+var _selecting: bool = false
+var _valid_tiles: Array[Vector2i] = []
+const HIGHLIGHT_COLOR: Color = Color(1.0, 1.0, 0.0, 0.3)  # yellow, semi-transparent
+
 
 ## Lifecycle — subscribe to EventBus events when entering the tree.
 func _ready() -> void:
 	EventBus.subscribe("unit_placed", _on_unit_placed)
 	EventBus.subscribe("unit_moved", _on_unit_moved)
+	EventBus.subscribe("tile_selection_started", _on_tile_selection_started)
+	EventBus.subscribe("tile_selection_completed", _on_tile_selection_ended)
+	EventBus.subscribe("tile_selection_cancelled", _on_tile_selection_ended)
 
 
 ## Lifecycle — unsubscribe from EventBus events when exiting the tree.
 func _exit_tree() -> void:
 	EventBus.unsubscribe("unit_placed", _on_unit_placed)
 	EventBus.unsubscribe("unit_moved", _on_unit_moved)
+	EventBus.unsubscribe("tile_selection_started", _on_tile_selection_started)
+	EventBus.unsubscribe("tile_selection_completed", _on_tile_selection_ended)
+	EventBus.unsubscribe("tile_selection_cancelled", _on_tile_selection_ended)
 
 
-## Handle middle-mouse-button panning and scroll-wheel zoom.
+## Handle middle-mouse-button panning, scroll-wheel zoom, and tile selection clicks.
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
@@ -55,6 +66,14 @@ func _input(event: InputEvent) -> void:
 		elif event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_zoom = maxf(_zoom - ZOOM_STEP, ZOOM_MIN)
 			scale = Vector2(_zoom, _zoom)
+		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT and _selecting:
+			_handle_tile_click(event.position)
+		elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT and _selecting:
+			# Right-click cancels tile selection
+			_selecting = false
+			_valid_tiles.clear()
+			queue_redraw()
+			EventBus.emit("tile_selection_cancelled", {})
 	elif event is InputEventMouseMotion and _panning:
 		var delta: Vector2 = event.position - _pan_start
 		position += delta
@@ -74,6 +93,55 @@ func _on_unit_moved(payload: Dictionary) -> void:
 	var unit_id: StringName = payload["unit_id"]
 	var to: Vector2i = payload["to"]
 	move_unit_sprite(unit_id, to)
+
+
+## Handler for tile_selection_started — highlight valid tiles.
+func _on_tile_selection_started(payload: Dictionary) -> void:
+	if battlefield_manager == null:
+		return
+	var range_val: int = payload.get("range", 1)
+	var caster_pos: Vector2i = payload.get("caster_pos", Vector2i(0, 0))
+
+	_valid_tiles.clear()
+	# Find all tiles within range that are free.
+	for dx in range(-range_val, range_val + 1):
+		for dy in range(-range_val, range_val + 1):
+			if dx == 0 and dy == 0:
+				continue  # skip the caster's own tile
+			var tile := Vector2i(caster_pos.x + dx, caster_pos.y + dy)
+			if tile.x < 0 or tile.x >= battlefield_manager.grid_width:
+				continue
+			if tile.y < 0 or tile.y >= battlefield_manager.grid_height:
+				continue
+			if battlefield_manager.is_tile_free(tile):
+				_valid_tiles.append(tile)
+
+	_selecting = true
+	queue_redraw()
+
+
+## Handler for tile_selection_completed/cancelled — clear highlights.
+func _on_tile_selection_ended(_payload: Dictionary) -> void:
+	_selecting = false
+	_valid_tiles.clear()
+	queue_redraw()
+
+
+## Handle a left-click during tile selection.
+func _handle_tile_click(screen_pos: Vector2) -> void:
+	# Convert screen position to local grid coordinates.
+	# The grid is inside a CanvasLayer, so position is in canvas space.
+	# screen_pos is in viewport coords. Subtract our position and divide by scale.
+	var local_pos: Vector2 = (screen_pos - position) / scale
+	var grid_pos := Vector2i(int(local_pos.x / tile_size), int(local_pos.y / tile_size))
+
+	print("  tile_click: screen=%s, local=%s, grid=%s, valid=%s" % [screen_pos, local_pos, grid_pos, grid_pos in _valid_tiles])
+
+	if grid_pos in _valid_tiles:
+		_selecting = false
+		_valid_tiles.clear()
+		queue_redraw()
+		EventBus.emit("tile_selected", {"tile": grid_pos})
 
 
 ## Convert grid coordinates to world pixel position (center of tile).
@@ -138,6 +206,12 @@ func _draw() -> void:
 		var from := Vector2(0, y * tile_size)
 		var to := Vector2(w * tile_size, y * tile_size)
 		draw_line(from, to, grid_color, grid_line_width)
+
+	# Draw highlighted tiles during selection
+	if _selecting:
+		for tile in _valid_tiles:
+			var rect := Rect2(tile.x * tile_size, tile.y * tile_size, tile_size, tile_size)
+			draw_rect(rect, HIGHLIGHT_COLOR, true)
 
 
 ## Create and position a unit sprite on the grid.
