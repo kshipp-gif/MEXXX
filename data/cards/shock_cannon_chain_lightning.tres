@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bjy21byjysg04"]
+
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_an5xa"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_tkqk6"]
+
+[sub_resource type="Resource" id="Resource_eej3c"]
+script = ExtResource("1_an5xa")
+amount = 4
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[resource]
+script = ExtResource("1_tkqk6")
+display_name = "Chain Lightning"
+ap_cost = 1
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_eej3c")])
+range_value = 3
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

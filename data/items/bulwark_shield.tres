@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cocr35av2p78n"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_kh761"]
+
+[resource]
+script = ExtResource("1_kh761")
+id = &"bulwark_shield"
+display_name = "Bulwark Shield"
+tags = Array[String](["2H", "Melee"])
+flavor_text = "Three solid feet of tungsten between you and your enemies."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

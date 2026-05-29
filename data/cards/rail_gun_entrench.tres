@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dhvyqmq4beciq"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_bkokh"]
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_v331q"]
+[ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_wwwjx"]
+
+[sub_resource type="Resource" id="Resource_oicy0"]
+script = ExtResource("1_v331q")
+amount = 5
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[sub_resource type="Resource" id="Resource_r8uu8"]
+script = ExtResource("2_wwwjx")
+caster_flag = "\"If not moved last turn\""
+metadata/_custom_type_script = "uid://cjpaea8c0c6ci"
+
+[resource]
+script = ExtResource("1_bkokh")
+display_name = "Entrench"
+ap_cost = 1
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_oicy0"), SubResource("Resource_r8uu8")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

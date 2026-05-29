@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bwrefak1rwjg3"]
+
+[ext_resource type="Script" uid="uid://binjnx3yk3xua" path="res://components/passives/ArmorPassive.gd" id="1_6ps5n"]
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_xmbud"]
+
+[sub_resource type="Resource" id="Resource_w0lnh"]
+script = ExtResource("1_6ps5n")
+armor_amount = 5
+metadata/_custom_type_script = "uid://binjnx3yk3xua"
+
+[resource]
+script = ExtResource("1_xmbud")
+id = &"support_struts"
+display_name = "Support Struts"
+slot_type = 1
+passives = Array[Resource]([SubResource("Resource_w0lnh")])
+flavor_text = "Adds 5 armor at the end of the turn if you didn't move"
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://ckpv555471tg3"]
+
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_nor2c"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_vppn7"]
+[ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_s2uyr"]
+
+[sub_resource type="Resource" id="Resource_xuskn"]
+script = ExtResource("1_nor2c")
+amount = 3
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_kh8q1"]
+script = ExtResource("2_s2uyr")
+caster_flag = "\"Repeat for every time block gained this combat\""
+metadata/_custom_type_script = "uid://cjpaea8c0c6ci"
+
+[resource]
+script = ExtResource("1_vppn7")
+display_name = "Momentum"
+ap_cost = 2
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_xuskn"), SubResource("Resource_kh8q1")])
+range_value = 1
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

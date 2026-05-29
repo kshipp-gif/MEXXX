@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b65xpmrxxei1b"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_pairl"]
+
+[resource]
+script = ExtResource("1_pairl")
+id = &"auto_rifle"
+display_name = "Auto Rifle"
+tags = Array[String](["2H", "Ranged"])
+max_ammo = 8
+flavor_text = "Standard issue auto rifle. "
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

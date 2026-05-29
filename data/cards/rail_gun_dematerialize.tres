@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://4q65d7o1trqj"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_7newy"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_pu75b"]
+
+[sub_resource type="Resource" id="Resource_ibi0b"]
+script = ExtResource("1_pu75b")
+amount = 25
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[resource]
+script = ExtResource("1_7newy")
+display_name = "Dematerialize"
+ap_cost = 3
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_ibi0b")])
+range_value = 5
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

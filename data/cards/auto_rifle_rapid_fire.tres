@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dc3gndxn07ke2"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_5eqbn"]
+[ext_resource type="Script" uid="uid://dub81d57e47jc" path="res://components/effects/MultiHitDamageEffect.gd" id="1_ppp82"]
+
+[sub_resource type="Resource" id="Resource_6asw5"]
+script = ExtResource("1_ppp82")
+amount = 3
+hits = 3
+metadata/_custom_type_script = "uid://dub81d57e47jc"
+
+[resource]
+script = ExtResource("1_5eqbn")
+display_name = "Rapid Fire"
+ap_cost = 1
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_6asw5")])
+range_value = 4
+ammo_count = 2
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

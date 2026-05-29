@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://b75uu1ulpqeh1"]
+
+[ext_resource type="Script" uid="uid://dh2sf0u3erlqt" path="res://components/effects/ReloadEffect.gd" id="1_woqon"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_xhl2j"]
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="2_4x6v2"]
+
+[sub_resource type="Resource" id="Resource_q1qu3"]
+script = ExtResource("1_woqon")
+metadata/_custom_type_script = "uid://dh2sf0u3erlqt"
+
+[sub_resource type="Resource" id="Resource_m8yth"]
+script = ExtResource("2_4x6v2")
+amount = 5
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[resource]
+script = ExtResource("1_xhl2j")
+display_name = "Reload"
+ap_cost = 1
+card_type = 4
+effects = Array[Resource]([SubResource("Resource_q1qu3"), SubResource("Resource_m8yth")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

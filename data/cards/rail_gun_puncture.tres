@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dxok7x3fagac4"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_1b2vo"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_qaarh"]
+[ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_xvpm7"]
+
+[sub_resource type="Resource" id="Resource_rmud0"]
+script = ExtResource("1_qaarh")
+amount = 5
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_p0khs"]
+script = ExtResource("2_xvpm7")
+caster_flag = "Repeat if didn't move last turn"
+metadata/_custom_type_script = "uid://cjpaea8c0c6ci"
+
+[resource]
+script = ExtResource("1_1b2vo")
+display_name = "Puncture"
+ap_cost = 1
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_rmud0"), SubResource("Resource_p0khs")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://covk8ks43yab0"]
+
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_5f3c7"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_wc8xx"]
+[ext_resource type="Script" uid="uid://cjpaea8c0c6ci" path="res://components/effects/ConditionalRepeatEffect.gd" id="2_2bc2w"]
+
+[sub_resource type="Resource" id="Resource_06gw4"]
+script = ExtResource("1_5f3c7")
+amount = 5
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[sub_resource type="Resource" id="Resource_flup8"]
+script = ExtResource("2_2bc2w")
+caster_flag = "\"If took damage last turn\""
+metadata/_custom_type_script = "uid://cjpaea8c0c6ci"
+
+[resource]
+script = ExtResource("1_wc8xx")
+display_name = "Lockdown"
+ap_cost = 1
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_06gw4"), SubResource("Resource_flup8")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"
