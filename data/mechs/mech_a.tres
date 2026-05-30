@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MechDefinition" format=3 uid="uid://bsf6oqwhi5ivw"]
 
 [ext_resource type="Script" uid="uid://d0nxicvlr2e1r" path="res://data/MechDefinition.gd" id="1_xlikc"]
-[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/items/broadsword.tres" id="2_lpcuy"]
+[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/arms/broadsword/item.tres" id="2_lpcuy"]
 
 [resource]
 script = ExtResource("1_xlikc")

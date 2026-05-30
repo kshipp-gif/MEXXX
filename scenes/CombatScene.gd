@@ -66,7 +66,7 @@ func _build_test_deck() -> void:
 	$DeckManager.hand.clear()
 	$DeckManager.discard_pile.clear()
 
-	var broadsword: Item = load("res://data/items/broadsword.tres") as Item
+	var broadsword: Item = load("res://data/arms/broadsword/item.tres") as Item
 	if broadsword == null or broadsword.card_set == null:
 		push_warning("CombatScene: broadsword.tres not found or has no card_set — deck will be empty.")
 		return
