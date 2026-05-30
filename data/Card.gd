@@ -13,6 +13,9 @@ class_name Card
 ## Broad category of the card (ATTACK, DEFENSE, MOVEMENT, UTILITY, COMBO).
 @export var card_type: Enums.CardType = Enums.CardType.UTILITY
 
+## Targeting mode: NOT_TARGETABLE (no selection), TARGETABLE (pick enemy), AOE (pick tile for area).
+@export var target_mode: Enums.TargetMode = Enums.TargetMode.NOT_TARGETABLE
+
 ## Drop rarity of the card's source item.
 @export var rarity: Enums.Rarity = Enums.Rarity.COMMON
 

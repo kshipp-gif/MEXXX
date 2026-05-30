@@ -30,7 +30,9 @@ var _zoom: float = 1.0
 ## Tile selection state
 var _selecting: bool = false
 var _valid_tiles: Array[Vector2i] = []
+var _hovered_tile: Vector2i = Vector2i(-1, -1)
 const HIGHLIGHT_COLOR: Color = Color(1.0, 1.0, 0.0, 0.3)  # yellow, semi-transparent
+const HOVER_COLOR: Color = Color(1.0, 1.0, 0.0, 0.6)  # brighter yellow for hovered tile
 
 
 ## Lifecycle — subscribe to EventBus events when entering the tree.
@@ -38,6 +40,7 @@ func _ready() -> void:
 	EventBus.subscribe("unit_placed", _on_unit_placed)
 	EventBus.subscribe("unit_moved", _on_unit_moved)
 	EventBus.subscribe("tile_selection_started", _on_tile_selection_started)
+	EventBus.subscribe("target_selection_started", _on_target_selection_started)
 	EventBus.subscribe("tile_selection_completed", _on_tile_selection_ended)
 	EventBus.subscribe("tile_selection_cancelled", _on_tile_selection_ended)
 
@@ -47,6 +50,7 @@ func _exit_tree() -> void:
 	EventBus.unsubscribe("unit_placed", _on_unit_placed)
 	EventBus.unsubscribe("unit_moved", _on_unit_moved)
 	EventBus.unsubscribe("tile_selection_started", _on_tile_selection_started)
+	EventBus.unsubscribe("target_selection_started", _on_target_selection_started)
 	EventBus.unsubscribe("tile_selection_completed", _on_tile_selection_ended)
 	EventBus.unsubscribe("tile_selection_cancelled", _on_tile_selection_ended)
 
@@ -78,6 +82,13 @@ func _input(event: InputEvent) -> void:
 		var delta: Vector2 = event.position - _pan_start
 		position += delta
 		_pan_start = event.position
+	elif event is InputEventMouseMotion and _selecting:
+		# Track hovered tile for highlight feedback.
+		var local_pos: Vector2 = (event.position - position) / scale
+		var grid_pos := Vector2i(int(local_pos.x / tile_size), int(local_pos.y / tile_size))
+		if grid_pos != _hovered_tile:
+			_hovered_tile = grid_pos
+			queue_redraw()
 
 
 ## Handler for unit_placed events.
@@ -124,6 +135,26 @@ func _on_tile_selection_started(payload: Dictionary) -> void:
 func _on_tile_selection_ended(_payload: Dictionary) -> void:
 	_selecting = false
 	_valid_tiles.clear()
+	_hovered_tile = Vector2i(-1, -1)
+	queue_redraw()
+
+
+## Handler for target_selection_started — highlight tiles with enemies.
+func _on_target_selection_started(_payload: Dictionary) -> void:
+	if battlefield_manager == null:
+		return
+
+	_valid_tiles.clear()
+	# Find all tiles occupied by enemies (not the mech).
+	for x in range(battlefield_manager.grid_width):
+		for y in range(battlefield_manager.grid_height):
+			var pos := Vector2i(x, y)
+			var unit_id: StringName = battlefield_manager.get_unit_at(pos)
+			if unit_id != &"" and unit_id != &"mech":
+				_valid_tiles.append(pos)
+
+	_selecting = true
+	_hovered_tile = Vector2i(-1, -1)
 	queue_redraw()
 
 
@@ -211,7 +242,10 @@ func _draw() -> void:
 	if _selecting:
 		for tile in _valid_tiles:
 			var rect := Rect2(tile.x * tile_size, tile.y * tile_size, tile_size, tile_size)
-			draw_rect(rect, HIGHLIGHT_COLOR, true)
+			if tile == _hovered_tile:
+				draw_rect(rect, HOVER_COLOR, true)
+			else:
+				draw_rect(rect, HIGHLIGHT_COLOR, true)
 
 
 ## Create and position a unit sprite on the grid.

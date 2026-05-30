@@ -78,26 +78,45 @@ func play_card(card: Card) -> bool:
 		"battlefield_manager": battlefield_manager
 	}
 	
-	# Check if card has ranged multi-tile effects that need tile selection
-	var needs_tile_selection: bool = false
-	if source_item != null and source_item.has_tag("ranged"):
-		for effect in card.effects:
-			if effect is MultiTileEffect:
-				needs_tile_selection = true
-				break
+	# Determine what selections are needed based on card flags and effects.
+	var needs_movement: bool = false
+	for effect in card.effects:
+		if effect is MoveEffect:
+			needs_movement = true
+			break
 
-	# Also trigger tile selection for movement effects (player picks destination)
-	if not needs_tile_selection:
-		for effect in card.effects:
-			if effect is MoveEffect:
-				needs_tile_selection = true
-				break
-	
-	# If ranged multi-tile, prompt tile selection
-	if needs_tile_selection:
+	# Handle selections in effect order.
+	# Walk through effects to determine prompt order.
+	var target_prompted: bool = false
+	var movement_prompted: bool = false
+
+	for effect in card.effects:
+		# If we hit a damage/status effect and card is TARGETABLE, prompt for target.
+		if not target_prompted and card.target_mode == Enums.TargetMode.TARGETABLE:
+			if effect is DamageEffect or effect is MultiHitDamageEffect or effect is ScalingDamageEffect or effect is StackDamageEffect or effect is ThresholdDamageEffect or effect is MultiHitStatusEffect or (effect is ApplyStatusEffect and effect.target_type == "target"):
+				var selected_tile: Vector2i = await _prompt_target_selection(context)
+				if selected_tile == Vector2i(-1, -1):
+					ap_manager.grant(card.ap_cost)
+					return false
+				var target_node: Node = battlefield_manager.get_unit_node_at(selected_tile)
+				if target_node != null:
+					context["target"] = target_node
+					context["target_pos"] = selected_tile
+				target_prompted = true
+
+		# If we hit a MoveEffect, prompt for movement tile.
+		if not movement_prompted and effect is MoveEffect:
+			var move_tile: Vector2i = await _prompt_tile_selection(card, context)
+			if move_tile == Vector2i(-1, -1):
+				ap_manager.grant(card.ap_cost)
+				return false
+			context["target_pos"] = move_tile
+			movement_prompted = true
+
+	# AOE mode: prompt for tile placement (ranged multi-tile effects).
+	if card.target_mode == Enums.TargetMode.AOE:
 		var selected_tile: Vector2i = await _prompt_tile_selection(card, context)
 		if selected_tile == Vector2i(-1, -1):
-			# Selection cancelled — refund resources
 			ap_manager.grant(card.ap_cost)
 			if source_item != null and source_item.has_tag("ammo") and source_item.max_ammo > 0:
 				source_item.current_ammo += 1
@@ -210,3 +229,31 @@ func _wait_for_tile_selection() -> Vector2i:
 	EventBus.unsubscribe("tile_selection_cancelled", on_cancelled)
 	print("  _wait_for_tile_selection: resolved with %s" % str(state[1]))
 	return state[1]
+
+## Prompt the player to select an enemy target.
+## Emits target_selection_started so the grid highlights enemy tiles.
+## Returns the selected tile, or Vector2i(-1, -1) if cancelled.
+func _prompt_target_selection(context: Dictionary) -> Vector2i:
+	var caster_pos: Vector2i = battlefield_manager.get_position(context["caster_id"])
+
+	# Emit event so BattlefieldGrid highlights enemy tiles.
+	EventBus.emit("target_selection_started", {
+		"caster_pos": caster_pos
+	})
+
+	# Wait for player to click an enemy tile.
+	var selected_tile: Vector2i = await _wait_for_tile_selection()
+
+	if selected_tile == Vector2i(-1, -1):
+		EventBus.emit("tile_selection_cancelled", {})
+		return selected_tile
+
+	# Validate that the selected tile has an enemy on it.
+	var unit_id: StringName = battlefield_manager.get_unit_at(selected_tile)
+	if unit_id == &"" or unit_id == &"mech":
+		# Not a valid enemy — retry.
+		EventBus.emit("tile_selection_rejected", { "reason": "no_enemy" })
+		return await _prompt_target_selection(context)
+
+	EventBus.emit("tile_selection_completed", { "tile": selected_tile })
+	return selected_tile
