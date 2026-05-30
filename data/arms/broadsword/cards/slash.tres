@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_5rbsc"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_bbk6t"]
+[ext_resource type="Texture2D" uid="uid://b5fvxg11u276d" path="res://assets/card_art/arms/broadsword/slash.png" id="1_gsigf"]
 [ext_resource type="Script" uid="uid://k06umxn7f1u4" path="res://components/effects/MultiTileDamageEffect.gd" id="2_5rbsc"]
 
 [sub_resource type="Resource" id="Resource_kv0k0"]
@@ -21,4 +22,5 @@ card_type = 0
 target_mode = 1
 effects = Array[Resource]([SubResource("Resource_kv0k0"), SubResource("Resource_7cpss")])
 range_value = 1
+card_art = ExtResource("1_gsigf")
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

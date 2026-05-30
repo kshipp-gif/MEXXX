@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu5yadynqs231"
-path="res://.godot/imported/Layout - copy_screenshot.png-6effb9319b6790376887faa4c85cbd9d.ctex"
+uid="uid://825l7xmk7d0"
+path="res://.godot/imported/lunge.png-5cf5b7984e8ff0cf2c9a1c42f48f6504.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Layout - copy_screenshot.png"
-dest_files=["res://.godot/imported/Layout - copy_screenshot.png-6effb9319b6790376887faa4c85cbd9d.ctex"]
+source_file="res://assets/card_art/arms/broadsword/lunge.png"
+dest_files=["res://.godot/imported/lunge.png-5cf5b7984e8ff0cf2c9a1c42f48f6504.ctex"]
 
 [params]
 

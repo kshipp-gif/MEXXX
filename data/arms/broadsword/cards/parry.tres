@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://cu3le5ypoeecg"]
 
+[ext_resource type="Texture2D" uid="uid://c1gqihw41erqy" path="res://assets/card_art/arms/broadsword/parry.png" id="1_61lnt"]
 [ext_resource type="Script" uid="uid://dgvq5ce1dnlyg" path="res://components/effects/GainArmorEffect.gd" id="1_h4ndo"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_qcvol"]
 [ext_resource type="Script" uid="uid://djdis0afn51kg" path="res://components/effects/ApplyStatusEffect.gd" id="2_hr4jh"]
@@ -26,4 +27,5 @@ ap_cost = 1
 card_type = 1
 effects = Array[Resource]([SubResource("Resource_hr4jh"), SubResource("Resource_208og")])
 range_value = 1
+card_art = ExtResource("1_61lnt")
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

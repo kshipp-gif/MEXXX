@@ -33,5 +33,8 @@ var source_item: Item = null
 ## Ammo consumed per play. Only meaningful for ammo-based items.
 @export var ammo_count: int = 0
 
+## Card art displayed on the card face in the hand.
+@export var card_art: Texture2D = null
+
 func _init() -> void:
 	effects = []

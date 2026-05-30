@@ -5,7 +5,7 @@
 ##   ScrollContainer → VBoxContainer
 ##     For each Item:
 ##       Label (item display_name, bold/large)
-##       HBoxContainer rows of up to 5 TestCard instances
+##       HBoxContainer rows of up to 5 CardNode instances
 ##   If inventory is empty:
 ##       Label "No items unlocked yet."
 ##
@@ -13,9 +13,9 @@
 ## process_mode = ALWAYS so the Codex works while the game is paused.
 extends Control
 
-const TEST_CARD_SCENE: PackedScene = preload("res://TestCard.tscn")
+const CARD_NODE_SCENE: PackedScene = preload("res://nodes/CardNode.tscn")
 
-## Card dimensions matching TestCard.tscn CollisionShape2D size.
+## Card dimensions matching CardNode.tscn CollisionShape2D size.
 const CARD_W: float = 118.0
 const CARD_H: float = 166.0
 
@@ -89,9 +89,9 @@ func _rebuild_content() -> void:
 					break
 
 				var card_data: Card = cards[card_idx]
-				var card_node = TEST_CARD_SCENE.instantiate()
+				var card_node = CARD_NODE_SCENE.instantiate()
 
-				# TestCard is an Area2D; wrap it in a Control so it sits in the HBox.
+				# CardNode is an Area2D; wrap it in a Control so it sits in the HBox.
 				var wrapper: Control = Control.new()
 				wrapper.custom_minimum_size = Vector2(CARD_W, CARD_H)
 				wrapper.add_child(card_node)

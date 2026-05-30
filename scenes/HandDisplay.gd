@@ -10,9 +10,9 @@
 ##   - Right-click a card: opens the inspect panel.
 extends Node2D
 
-const TEST_CARD_SCENE: PackedScene = preload("res://TestCard.tscn")
+const CARD_NODE_SCENE: PackedScene = preload("res://nodes/CardNode.tscn")
 
-## Card dimensions (matches TestCard.tscn CollisionShape2D size).
+## Card dimensions (matches CardNode.tscn CollisionShape2D size).
 const CARD_W: float = 118.0
 const CARD_H: float = 166.0
 
@@ -323,7 +323,7 @@ func _rebuild_hand(hand: Array) -> void:
 	var start_x: float = hand_centre_x - total_width / 2.0
 
 	for i in range(count):
-		var card_node = TEST_CARD_SCENE.instantiate()
+		var card_node = CARD_NODE_SCENE.instantiate()
 		var home: Vector2 = Vector2(start_x + i * CARD_SPACING, hand_y)
 		card_node.position = home
 		card_node.z_index = i + 1
