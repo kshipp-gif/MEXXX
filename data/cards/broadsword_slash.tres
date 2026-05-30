@@ -2,16 +2,22 @@
 
 [ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_5rbsc"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_bbk6t"]
+[ext_resource type="Script" uid="uid://k06umxn7f1u4" path="res://components/effects/MultiTileDamageEffect.gd" id="2_5rbsc"]
 
 [sub_resource type="Resource" id="Resource_kv0k0"]
 script = ExtResource("1_5rbsc")
 amount = 6
 metadata/_custom_type_script = "uid://cindbdr0y6xif"
 
+[sub_resource type="Resource" id="Resource_7cpss"]
+script = ExtResource("2_5rbsc")
+metadata/_custom_type_script = "uid://k06umxn7f1u4"
+
 [resource]
 script = ExtResource("1_bbk6t")
 display_name = "Slash"
 ap_cost = 1
 card_type = 0
-effects = Array[Resource]([SubResource("Resource_kv0k0")])
+target_mode = 1
+effects = Array[Resource]([SubResource("Resource_kv0k0"), SubResource("Resource_7cpss")])
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

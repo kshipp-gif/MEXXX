@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Card" format=3]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://dl83joj0iay4g" path="res://components/effects/MoveEffect.gd" id="2_move"]
+[ext_resource type="Script" path="res://components/effects/NextAttackBuffEffect.gd" id="3_buff"]
+
+[sub_resource type="Resource" id="Resource_move"]
+script = ExtResource("2_move")
+tiles = 1
+
+[sub_resource type="Resource" id="Resource_buff"]
+script = ExtResource("3_buff")
+multiplier = 1.2
+
+[resource]
+script = ExtResource("1_card")
+display_name = "Slither"
+ap_cost = 1
+card_type = 2
+range_value = 1
+effects = Array[Resource]([SubResource("Resource_move"), SubResource("Resource_buff")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

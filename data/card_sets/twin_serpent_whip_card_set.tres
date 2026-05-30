@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardSet" format=3]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_cs"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_serpent_strike.tres" id="3_strike"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_slither.tres" id="4_slither"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_twin_lash.tres" id="5_lash"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_shed_skin.tres" id="6_shed"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_serpent_dance.tres" id="7_dance"]
+[ext_resource type="Resource" path="res://data/cards/twin_serpent_whip_crossfang_strike.tres" id="8_cross"]
+
+[resource]
+script = ExtResource("2_cs")
+cards = Array[ExtResource("1_card")]([ExtResource("3_strike"), ExtResource("4_slither"), ExtResource("5_lash"), ExtResource("6_shed"), ExtResource("7_dance"), ExtResource("8_cross")])
+metadata/_custom_type_script = "uid://7wypwmwdlmpj"

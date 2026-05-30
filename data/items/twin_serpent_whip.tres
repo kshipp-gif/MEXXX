@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_item"]
+[ext_resource type="Resource" path="res://data/card_sets/twin_serpent_whip_card_set.tres" id="2_cs"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"twin_serpent_whip"
+display_name = "Twin-Serpent Whip"
+tags = Array[String](["1H", "Melee"])
+card_set = ExtResource("2_cs")
+flavor_text = "A pair of whips that move like living serpents, striking with venomous precision."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"
