@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://dolq7vjsg4uyp"]
 
+[ext_resource type="Texture2D" uid="uid://825l7xmk7d0" path="res://assets/card_art/arms/broadsword/lunge.png" id="1_75vw8"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_hc27l"]
 [ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_jhjg8"]
 [ext_resource type="Script" uid="uid://dl83joj0iay4g" path="res://components/effects/MoveEffect.gd" id="2_iijpj"]
@@ -21,4 +22,5 @@ card_type = 4
 target_mode = 1
 effects = Array[Resource]([SubResource("Resource_rem4t"), SubResource("Resource_q5uda")])
 range_value = 1
+card_art = ExtResource("1_75vw8")
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

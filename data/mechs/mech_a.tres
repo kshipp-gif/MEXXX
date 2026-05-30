@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="MechDefinition" format=3 uid="uid://bsf6oqwhi5ivw"]
 
 [ext_resource type="Script" uid="uid://d0nxicvlr2e1r" path="res://data/MechDefinition.gd" id="1_xlikc"]
-[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/arms/broadsword/item.tres" id="2_lpcuy"]
+[ext_resource type="Resource" uid="uid://dgg3linabwtae" path="res://data/arms/broadsword/broadsword_item.tres" id="2_lpcuy"]
 
 [resource]
 script = ExtResource("1_xlikc")
 mech_id = "test_mech"
 display_name = "Test Mech"
 description = "A test mech pre-loaded with a Broadsword and its full card set."
-starting_items = Array[Resource]([ExtResource("2_lpcuy")])
+starting_items = Array[Resource]([ExtResource("2_lpcuy"), null, null, null, null])
 metadata/_custom_type_script = "uid://d0nxicvlr2e1r"

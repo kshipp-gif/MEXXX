@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://de3ypuo75a242"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_742ub"]
+[ext_resource type="Texture2D" uid="uid://dqre1okkla7rl" path="res://assets/card_art/arms/broadsword/strike.png" id="1_k2jet"]
 [ext_resource type="Script" uid="uid://bcwmw7lvwk4vb" path="res://components/effects/ThresholdDamageEffect.gd" id="1_si412"]
 
 [sub_resource type="Resource" id="Resource_naujv"]
@@ -10,9 +11,10 @@ base_amount = 5
 [resource]
 script = ExtResource("1_742ub")
 display_name = "Strike"
-ap_cost = 5
+ap_cost = 2
 card_type = 0
 target_mode = 1
 effects = Array[Resource]([SubResource("Resource_naujv")])
 range_value = 1
+card_art = ExtResource("1_k2jet")
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

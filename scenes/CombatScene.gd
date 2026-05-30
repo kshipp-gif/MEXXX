@@ -45,7 +45,7 @@ func _ready() -> void:
 	# Wire the End Turn button.
 	$UI/EndTurnButton.pressed.connect(_on_end_turn)
 
-	# Build a test deck of 15 TestCard instances directly in DeckManager.
+	# Build the deck from the broadsword item.
 	_build_test_deck()
 
 func _exit_tree() -> void:

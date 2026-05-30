@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://mech001"]
+[gd_scene format=3 uid="uid://mech001"]
 
-[ext_resource type="Script" path="res://nodes/Mech.gd" id="1_mchscr"]
-[ext_resource type="Script" path="res://components/managers/SlotManager.gd" id="2_slotmg"]
-[ext_resource type="Script" path="res://components/managers/APManager.gd" id="3_apmgr"]
-[ext_resource type="Script" path="res://components/managers/StatusEffectManager.gd" id="4_semgr"]
+[ext_resource type="Script" uid="uid://cglykxofdcgsx" path="res://nodes/Mech.gd" id="1_mchscr"]
+[ext_resource type="Script" uid="uid://1r3fkqmsl6u8" path="res://components/managers/SlotManager.gd" id="2_slotmg"]
+[ext_resource type="Script" uid="uid://ds1p8owbmxsgl" path="res://components/managers/APManager.gd" id="3_apmgr"]
+[ext_resource type="Script" uid="uid://com4owu5e7g31" path="res://components/managers/StatusEffectManager.gd" id="4_semgr"]
 
-[node name="Mech" type="CharacterBody2D"]
+[node name="Mech" type="CharacterBody2D" unique_id=985996766]
 script = ExtResource("1_mchscr")
 
-[node name="SlotManager" type="Node" parent="."]
+[node name="SlotManager" type="Node" parent="." unique_id=299299140]
 script = ExtResource("2_slotmg")
 
-[node name="APManager" type="Node" parent="."]
+[node name="APManager" type="Node" parent="." unique_id=876834981]
 script = ExtResource("3_apmgr")
 
-[node name="StatusEffectManager" type="Node" parent="."]
+[node name="StatusEffectManager" type="Node" parent="." unique_id=873972117]
 script = ExtResource("4_semgr")
