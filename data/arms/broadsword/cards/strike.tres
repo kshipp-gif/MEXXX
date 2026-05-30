@@ -14,4 +14,5 @@ ap_cost = 5
 card_type = 0
 target_mode = 1
 effects = Array[Resource]([SubResource("Resource_naujv")])
+range_value = 1
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

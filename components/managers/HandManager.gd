@@ -27,6 +27,8 @@ func _on_ap_changed(payload: Dictionary) -> void:
 	_current_ap = payload.get("current_ap", 0)
 
 ## Handle card play request from the UI (drag-to-play).
+## If the payload includes "target" and "target_pos", the card is played directly
+## against that target without prompting for tile selection.
 func _on_card_play_requested(payload: Dictionary) -> void:
 	if _playing_card:
 		return  # already playing a card (waiting for tile selection)
@@ -36,9 +38,19 @@ func _on_card_play_requested(payload: Dictionary) -> void:
 		return
 	print("HandManager: attempting to play '%s' (ap_cost=%d)" % [card.display_name, card.ap_cost])
 	_playing_card = true
-	var result = await play_card(card)
-	_playing_card = false
-	print("HandManager: play_card returned %s" % str(result))
+
+	# If the UI already resolved a target (drag-to-enemy targeting), use it directly.
+	var pre_resolved_target: Node = payload.get("target") as Node
+	var pre_resolved_pos = payload.get("target_pos")
+
+	if pre_resolved_target != null and pre_resolved_pos != null:
+		var result: bool = play_card_on_target(card, pre_resolved_target, pre_resolved_pos as Vector2i)
+		_playing_card = false
+		print("HandManager: play_card_on_target returned %s" % str(result))
+	else:
+		var result = await play_card(card)
+		_playing_card = false
+		print("HandManager: play_card returned %s" % str(result))
 
 ## Called at turn start; requests draw from DeckManager if this is the player's turn.
 func on_turn_started(payload: Dictionary) -> void:
@@ -130,6 +142,52 @@ func play_card(card: Card) -> bool:
 		context["current_effect_index"] = i
 		card.effects[i].execute(context)
 	# Discard the card from hand
+	if deck_manager != null:
+		deck_manager.discard_card(card)
+	EventBus.emit("card_played", { "card": card, "playable": true })
+	return true
+
+## Play a card directly against a pre-resolved target (used by drag-to-enemy targeting).
+## Skips the tile selection prompt since the target is already known.
+## Returns true if the card was played successfully, false otherwise.
+func play_card_on_target(card: Card, target_node: Node, target_pos: Vector2i) -> bool:
+	if ap_manager == null:
+		print("  play_card_on_target FAIL: ap_manager is null")
+		return false
+	# Check AP
+	if not ap_manager.spend(card.ap_cost):
+		print("  play_card_on_target FAIL: not enough AP (need %d)" % card.ap_cost)
+		return false
+	# Check ammo
+	var source_item: Item = card.source_item as Item
+	if source_item != null and source_item.has_tag("ammo"):
+		if source_item.max_ammo > 0 and source_item.current_ammo <= 0:
+			print("  play_card_on_target FAIL: ammo depleted")
+			ap_manager.grant(card.ap_cost)
+			return false
+		if source_item.max_ammo > 0:
+			source_item.decrement_ammo()
+
+	# Build context with the pre-resolved target.
+	var context: Dictionary = {
+		"caster": mech,
+		"target": target_node,
+		"target_pos": target_pos,
+		"ap_manager": ap_manager,
+		"deck_manager": deck_manager,
+		"event_bus": EventBus,
+		"card_effects": card.effects,
+		"source_item": source_item,
+		"caster_id": &"mech",
+		"battlefield_manager": battlefield_manager
+	}
+
+	# Execute effects in order.
+	for i in range(card.effects.size()):
+		context["current_effect_index"] = i
+		card.effects[i].execute(context)
+
+	# Discard the card from hand.
 	if deck_manager != null:
 		deck_manager.discard_card(card)
 	EventBus.emit("card_played", { "card": card, "playable": true })

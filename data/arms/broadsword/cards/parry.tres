@@ -9,7 +9,6 @@
 script = ExtResource("1_h4ndo")
 amount = 5
 
-
 [sub_resource type="Resource" id="Resource_5pqqq"]
 script = ExtResource("3_ba7k8")
 stacks = 2
@@ -26,4 +25,5 @@ display_name = "Parry"
 ap_cost = 1
 card_type = 1
 effects = Array[Resource]([SubResource("Resource_hr4jh"), SubResource("Resource_208og")])
+range_value = 1
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

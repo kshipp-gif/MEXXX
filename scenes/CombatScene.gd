@@ -18,6 +18,8 @@ func _ready() -> void:
 	$UI/HandDisplay.draw_count_label = $UI/DrawPile/DrawCountLabel
 	$UI/HandDisplay.discard_count_label = $UI/DiscardPile/DiscardCountLabel
 	$UI/HandDisplay.inspect_panel = $UI/CardInspectPanel
+	$UI/HandDisplay.battlefield_manager = $BattlefieldManager
+	$UI/HandDisplay.battlefield_grid = $GridLayer/BattlefieldGrid
 
 	# Wire BattlefieldGrid to BattlefieldManager for grid display.
 	if $GridLayer/BattlefieldGrid == null:

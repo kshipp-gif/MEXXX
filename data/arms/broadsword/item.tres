@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dgg3linabwtae"]
 
-[ext_resource type="Resource" uid="uid://j3vtrgxetj0h" path="res://data/card_sets/broadsword_card_set.tres" id="1_5qowl"]
+[ext_resource type="Resource" uid="uid://j3vtrgxetj0h" path="res://data/arms/broadsword/card_set.tres" id="1_5qowl"]
 [ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_w1f6q"]
 
 [resource]
