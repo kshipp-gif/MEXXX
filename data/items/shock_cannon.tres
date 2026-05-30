@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c8l3kti1lctn4"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_wkbup"]
+
+[resource]
+script = ExtResource("1_wkbup")
+id = &"shock_cannon"
+display_name = "Shock Cannon"
+tags = Array[String](["2H", "Ranged"])
+flavor_text = "The energy required to power this thing could sustain a city, but hey, at least the lightshow is pretty.."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

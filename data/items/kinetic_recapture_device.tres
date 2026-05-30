@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://w4b4cok05eqe"]
+
+[ext_resource type="Script" uid="uid://binjnx3yk3xua" path="res://components/passives/ArmorPassive.gd" id="1_lx2p0"]
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_vha1b"]
+
+[sub_resource type="Resource" id="Resource_d7vu5"]
+script = ExtResource("1_lx2p0")
+armor_amount = 2
+metadata/_custom_type_script = "uid://binjnx3yk3xua"
+
+[resource]
+script = ExtResource("1_vha1b")
+id = &"kinetic_recapture_device"
+display_name = "Kinetic recapture device"
+slot_type = 2
+passives = Array[Resource]([SubResource("Resource_d7vu5")])
+flavor_text = "Adds 2 armor per ammo spent"
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

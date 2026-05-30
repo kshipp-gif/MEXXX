@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://nqr2urd1vwl0"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_15b5u"]
+[ext_resource type="Script" uid="uid://dvt2emx7dt0he" path="res://components/passives/Passive.gd" id="1_w8eiu"]
+
+[sub_resource type="Resource" id="Resource_pfv2c"]
+script = ExtResource("1_w8eiu")
+metadata/_custom_type_script = "uid://dvt2emx7dt0he"
+
+[resource]
+script = ExtResource("1_15b5u")
+id = &"ammo_pack"
+display_name = "Ammo Pack"
+slot_type = 2
+passives = Array[Resource]([SubResource("Resource_pfv2c")])
+flavor_text = "Adds 1 ammo per turn (description here until built."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

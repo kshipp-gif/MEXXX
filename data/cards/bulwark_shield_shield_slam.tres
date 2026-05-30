@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://d3xo30qa67mxk"]
+
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_k4jmn"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_y5o64"]
+
+[sub_resource type="Resource" id="Resource_5bs5y"]
+script = ExtResource("1_k4jmn")
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[resource]
+script = ExtResource("1_y5o64")
+display_name = "Shield Slam"
+ap_cost = 1
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_5bs5y")])
+range_value = 1
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

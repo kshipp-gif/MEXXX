@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://c6e2offe7qnpq"]
+
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_28hlc"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_sph7m"]
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="2_8hb4o"]
+
+[sub_resource type="Resource" id="Resource_4lq7y"]
+script = ExtResource("1_28hlc")
+amount = 5
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_upvsm"]
+script = ExtResource("2_8hb4o")
+amount = 5
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[resource]
+script = ExtResource("1_sph7m")
+display_name = "Cover Fire"
+ap_cost = 1
+card_type = 4
+effects = Array[Resource]([SubResource("Resource_4lq7y"), SubResource("Resource_upvsm")])
+range_value = 4
+ammo_count = 1
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

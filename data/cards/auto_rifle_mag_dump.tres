@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://vkhjbc3fknfw"]
+
+[ext_resource type="Script" uid="uid://dub81d57e47jc" path="res://components/effects/MultiHitDamageEffect.gd" id="1_hhw5x"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_tdx5p"]
+
+[sub_resource type="Resource" id="Resource_pnxlj"]
+script = ExtResource("1_hhw5x")
+amount = 5
+hits = 4
+metadata/_custom_type_script = "uid://dub81d57e47jc"
+
+[resource]
+script = ExtResource("1_tdx5p")
+display_name = "Mag Dump"
+ap_cost = 2
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_pnxlj")])
+range_value = 4
+ammo_count = 4
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bkv1j5xu233bg"]
+
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_8ubqa"]
+[ext_resource type="Script" uid="uid://b5tkoli7daw7j" path="res://components/status_effects/BrittleEffect.gd" id="2_j0c2k"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="3_mitcq"]
+
+[sub_resource type="Resource" id="Resource_x5jim"]
+script = ExtResource("1_8ubqa")
+amount = 15
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_yt2rq"]
+script = ExtResource("2_j0c2k")
+metadata/_custom_type_script = "uid://b5tkoli7daw7j"
+
+[resource]
+script = ExtResource("3_mitcq")
+display_name = "Overload"
+ap_cost = 2
+card_type = 0
+effects = Array[Resource]([SubResource("Resource_x5jim"), SubResource("Resource_yt2rq")])
+range_value = 3
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

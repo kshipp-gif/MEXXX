@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bl7xmx37qw2lq"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_n8uk3"]
+
+[resource]
+script = ExtResource("1_n8uk3")
+id = &"acid_sprayer"
+display_name = "Acid Sprayer"
+tags = Array[String](["2h", "Arm"])
+flavor_text = "Illegal practically everywhere. But the results speak for themselves."
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"

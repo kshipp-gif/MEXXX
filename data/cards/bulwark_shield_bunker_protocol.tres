@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dslomcropxtvv"]
+
+[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_bhk7q"]
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_uhc6n"]
+
+[sub_resource type="Resource" id="Resource_oyph0"]
+script = ExtResource("1_bhk7q")
+amount = 15
+metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
+[resource]
+script = ExtResource("1_uhc6n")
+display_name = "Bunker Protocol"
+ap_cost = 2
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_oyph0")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

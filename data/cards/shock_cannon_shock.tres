@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bxw6pfa8pfnko"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_c0vm0"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_ryy25"]
+[ext_resource type="Script" uid="uid://b5tkoli7daw7j" path="res://components/status_effects/BrittleEffect.gd" id="2_1iipm"]
+
+[sub_resource type="Resource" id="Resource_0aggw"]
+script = ExtResource("1_ryy25")
+amount = 5
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[sub_resource type="Resource" id="Resource_yjbm8"]
+script = ExtResource("2_1iipm")
+metadata/_custom_type_script = "uid://b5tkoli7daw7j"
+
+[resource]
+script = ExtResource("1_c0vm0")
+display_name = "Shock"
+ap_cost = 1
+card_type = 4
+effects = Array[Resource]([SubResource("Resource_0aggw"), SubResource("Resource_yjbm8")])
+range_value = 3
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

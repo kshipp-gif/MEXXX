@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://ddae6352bcnww"]
+
+[ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_eqmpp"]
+[ext_resource type="Script" uid="uid://cindbdr0y6xif" path="res://components/effects/DamageEffect.gd" id="1_ip6e8"]
+
+[sub_resource type="Resource" id="Resource_s8f6s"]
+script = ExtResource("1_ip6e8")
+amount = 3
+metadata/_custom_type_script = "uid://cindbdr0y6xif"
+
+[resource]
+script = ExtResource("1_eqmpp")
+display_name = "Feedback"
+ap_cost = 1
+card_type = 1
+effects = Array[Resource]([SubResource("Resource_s8f6s")])
+metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

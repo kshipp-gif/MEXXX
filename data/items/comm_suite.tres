@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://yro7016qmvv6"]
+
+[ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_4275s"]
+[ext_resource type="Script" uid="uid://b7b6ksk1g65ld" path="res://components/effects/DrawEffect.gd" id="1_pd7vj"]
+
+[sub_resource type="Resource" id="Resource_1ffm3"]
+script = ExtResource("1_pd7vj")
+metadata/_custom_type_script = "uid://b7b6ksk1g65ld"
+
+[resource]
+script = ExtResource("1_4275s")
+id = &"comm_suite"
+display_name = "Comm Suite"
+slot_type = 3
+passives = Array[Resource]([SubResource("Resource_1ffm3")])
+flavor_text = "Draw 2 cards at the beginning of combat"
+metadata/_custom_type_script = "uid://csp3o6clmo4p8"
