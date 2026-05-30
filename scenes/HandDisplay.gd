@@ -328,15 +328,17 @@ func _rebuild_hand(hand: Array) -> void:
 		card_node.position = home
 		card_node.z_index = i + 1
 
-		# Assign Card resource for inspect and play.
-		if hand[i] is Card:
-			card_node.card_data = hand[i]
-
 		# Wire right-click inspect.
 		if card_node.has_signal("inspect_requested"):
 			card_node.inspect_requested.connect(_on_inspect_requested)
 
 		add_child(card_node)
+
+		# Assign Card resource AFTER add_child so the node is in the tree
+		# and _update_art() can access $CardImage.
+		if hand[i] is Card:
+			card_node.card_data = hand[i]
+
 		_hand_nodes.append(card_node)
 		_home_positions.append(home)
 

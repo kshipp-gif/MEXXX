@@ -45,8 +45,8 @@ func _ready() -> void:
 	# Wire the End Turn button.
 	$UI/EndTurnButton.pressed.connect(_on_end_turn)
 
-	# Build the deck from the broadsword item.
-	_build_test_deck()
+	# Equip starting items and build the deck from them.
+	_equip_starting_loadout()
 
 func _exit_tree() -> void:
 	EventBus.unsubscribe("slot_changed", _on_slot_changed)
@@ -61,23 +61,26 @@ func _start_combat() -> void:
 		enemy_nodes.append(child)
 	$CombatTurnManager.start_combat(enemy_nodes)
 
-## Load the Broadsword item and populate DeckManager directly.
-## Stamps source_item on each card so inspect panel shows item name and tags.
-func _build_test_deck() -> void:
-	$DeckManager.deck.clear()
-	$DeckManager.hand.clear()
-	$DeckManager.discard_pile.clear()
-
-	var broadsword: Item = load("res://data/arms/broadsword/item.tres") as Item
-	if broadsword == null or broadsword.card_set == null:
-		push_warning("CombatScene: broadsword.tres not found or has no card_set — deck will be empty.")
+## Equip items from the MechDefinition's starting_items into the Mech's slots
+## and build the deck from them.
+func _equip_starting_loadout() -> void:
+	var slot_manager: Node = $Mech/SlotManager
+	var mech_def: Resource = load("res://data/mechs/mech_a.tres")
+	if mech_def == null:
+		push_warning("CombatScene: mech_a.tres not found — deck will be empty.")
 		return
 
-	for card in broadsword.card_set.cards:
-		card.source_item = broadsword
-		$DeckManager.deck.append(card)
+	# starting_items maps by index to slots: [L_Arm, R_Arm, Legs, Back, Head]
+	var slot_names: Array = ["L_Arm", "R_Arm", "Legs", "Back", "Head"]
+	for i in range(mech_def.starting_items.size()):
+		var item: Item = mech_def.starting_items[i] as Item
+		if item == null:
+			continue
+		if i < slot_names.size():
+			slot_manager.equip(slot_names[i], item)
 
-	$DeckManager.deck.shuffle()
+	# Build the deck from all equipped items.
+	$DeckManager.build_deck(slot_manager)
 
 ## Rebuild the deck whenever a slot changes (e.g., mid-combat equip swap).
 func _on_slot_changed(_payload: Dictionary) -> void:
