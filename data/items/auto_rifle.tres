@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://b65xpmrxxei1b"]
 
 [ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_pairl"]
+[ext_resource type="Resource" uid="uid://c3fdlphb3xlfc" path="res://data/card_sets/auto_rifle_card_set.tres" id="1_r6w82"]
 
 [resource]
 script = ExtResource("1_pairl")
 id = &"auto_rifle"
 display_name = "Auto Rifle"
 tags = Array[String](["2H", "Ranged"])
+card_set = ExtResource("1_r6w82")
 max_ammo = 8
 flavor_text = "Standard issue auto rifle. "
 metadata/_custom_type_script = "uid://csp3o6clmo4p8"

@@ -1,8 +1,14 @@
 [gd_resource type="Resource" script_class="CardSet" format=3 uid="uid://dd37psnhry1ta"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_sh6xv"]
+[ext_resource type="Resource" uid="uid://dslomcropxtvv" path="res://data/cards/bulwark_shield_bunker_protocol.tres" id="2_44b1r"]
 [ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_vf3nq"]
+[ext_resource type="Resource" uid="uid://ddae6352bcnww" path="res://data/cards/bulwark_shield_feedback.tres" id="3_tnunk"]
+[ext_resource type="Resource" uid="uid://covk8ks43yab0" path="res://data/cards/bulwark_shield_lockdown.tres" id="4_ve8o2"]
+[ext_resource type="Resource" uid="uid://ckpv555471tg3" path="res://data/cards/bulwark_shield_momentum.tres" id="5_6mu6u"]
+[ext_resource type="Resource" uid="uid://d3xo30qa67mxk" path="res://data/cards/bulwark_shield_shield_slam.tres" id="6_m7bhl"]
 
 [resource]
 script = ExtResource("2_vf3nq")
+cards = Array[ExtResource("1_sh6xv")]([ExtResource("2_44b1r"), ExtResource("3_tnunk"), ExtResource("4_ve8o2"), ExtResource("5_6mu6u"), ExtResource("6_m7bhl")])
 metadata/_custom_type_script = "uid://7wypwmwdlmpj"

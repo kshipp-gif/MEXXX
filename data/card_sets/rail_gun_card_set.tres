@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_p23yi"]
 [ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_eqrt5"]
+[ext_resource type="Resource" uid="uid://4q65d7o1trqj" path="res://data/cards/rail_gun_dematerialize.tres" id="2_v3xnn"]
+[ext_resource type="Resource" uid="uid://b8bm8j2pw5fim" path="res://data/cards/rail_gun_emplacement.tres" id="3_eu0kv"]
+[ext_resource type="Resource" uid="uid://dhvyqmq4beciq" path="res://data/cards/rail_gun_entrench.tres" id="4_c4k7s"]
+[ext_resource type="Resource" uid="uid://cnph53vn3id7c" path="res://data/cards/rail_gun_piercing_shot.tres" id="5_abr27"]
+[ext_resource type="Resource" uid="uid://dxok7x3fagac4" path="res://data/cards/rail_gun_puncture.tres" id="6_iyuw0"]
 
 [resource]
 script = ExtResource("2_eqrt5")
+cards = Array[ExtResource("1_p23yi")]([ExtResource("2_v3xnn"), ExtResource("3_eu0kv"), ExtResource("4_c4k7s"), ExtResource("5_abr27"), ExtResource("6_iyuw0")])
 metadata/_custom_type_script = "uid://7wypwmwdlmpj"

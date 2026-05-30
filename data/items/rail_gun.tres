@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://b7dps6c5lejw6"]
 
+[ext_resource type="Resource" uid="uid://qsnyabnhv8op" path="res://data/card_sets/rail_gun_card_set.tres" id="1_gl2fl"]
 [ext_resource type="Script" uid="uid://csp3o6clmo4p8" path="res://data/Item.gd" id="1_sxrs3"]
 
 [resource]
@@ -7,5 +8,6 @@ script = ExtResource("1_sxrs3")
 id = &"rail_gun"
 display_name = "Rail Gun"
 tags = Array[String](["2H", "Ranged"])
+card_set = ExtResource("1_gl2fl")
 flavor_text = "A solid slug of Tungsten launched at a franction of the speed of light will put the fear of god in anyone."
 metadata/_custom_type_script = "uid://csp3o6clmo4p8"

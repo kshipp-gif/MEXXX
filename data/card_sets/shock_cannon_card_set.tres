@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_8w2oy"]
 [ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_8wxpg"]
+[ext_resource type="Resource" uid="uid://bjy21byjysg04" path="res://data/cards/shock_cannon_chain_lightning.tres" id="2_rrjox"]
+[ext_resource type="Resource" uid="uid://bkv1j5xu233bg" path="res://data/cards/shock_cannon_overload.tres" id="3_lee34"]
+[ext_resource type="Resource" uid="uid://bxw6pfa8pfnko" path="res://data/cards/shock_cannon_shock.tres" id="4_txfc2"]
+[ext_resource type="Resource" uid="uid://cd7r15qhjjm0f" path="res://data/cards/shock_cannon_static_barrier.tres" id="5_bd0uk"]
+[ext_resource type="Resource" uid="uid://drhdltno7syur" path="res://data/cards/shock_cannon_thunderstorm.tres" id="6_7jcam"]
 
 [resource]
 script = ExtResource("2_8wxpg")
+cards = Array[ExtResource("1_8w2oy")]([ExtResource("2_rrjox"), ExtResource("3_lee34"), ExtResource("4_txfc2"), ExtResource("5_bd0uk"), ExtResource("6_7jcam")])
 metadata/_custom_type_script = "uid://7wypwmwdlmpj"

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://cd7r15qhjjm0f"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_6iy8n"]
-[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_7b42d"]
+[ext_resource type="Script" uid="uid://dgvq5ce1dnlyg" path="res://components/effects/GainArmorEffect.gd" id="1_7b42d"]
 [ext_resource type="Script" uid="uid://b5tkoli7daw7j" path="res://components/status_effects/BrittleEffect.gd" id="2_phfs5"]
 
 [sub_resource type="Resource" id="Resource_smu5b"]
 script = ExtResource("1_7b42d")
 amount = 5
-metadata/_custom_type_script = "uid://pvkuww5ce03h"
+
 
 [sub_resource type="Resource" id="Resource_5dfai"]
 script = ExtResource("2_phfs5")

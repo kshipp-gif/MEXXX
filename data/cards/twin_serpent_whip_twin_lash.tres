@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="Card" format=3]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cgg1yjb4aaty"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
-[ext_resource type="Script" path="res://components/effects/MultiHitDamageEffect.gd" id="2_eff"]
+[ext_resource type="Script" uid="uid://dub81d57e47jc" path="res://components/effects/MultiHitDamageEffect.gd" id="2_eff"]
 
 [sub_resource type="Resource" id="Resource_001"]
 script = ExtResource("2_eff")
 amount = 4
-hits = 2
 
 [resource]
 script = ExtResource("1_card")

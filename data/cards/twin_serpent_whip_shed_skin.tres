@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="Card" format=3]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cgdr1n37qlin"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
-[ext_resource type="Script" path="res://components/effects/ConditionalBranchEffect.gd" id="2_branch"]
-[ext_resource type="Script" path="res://components/effects/GrantAPEffect.gd" id="3_ap"]
-[ext_resource type="Script" path="res://components/effects/DrawEffect.gd" id="4_draw"]
-
-[sub_resource type="Resource" id="Resource_ap"]
-script = ExtResource("3_ap")
-amount = 2
+[ext_resource type="Script" uid="uid://bxm7cj4c7s2kt" path="res://components/effects/ConditionalBranchEffect.gd" id="2_branch"]
+[ext_resource type="Script" uid="uid://kyig103g4hl5" path="res://components/effects/GrantAPEffect.gd" id="3_ap"]
+[ext_resource type="Script" uid="uid://b7b6ksk1g65ld" path="res://components/effects/DrawEffect.gd" id="4_draw"]
 
 [sub_resource type="Resource" id="Resource_draw"]
 script = ExtResource("4_draw")
 count = 2
+
+[sub_resource type="Resource" id="Resource_ap"]
+script = ExtResource("3_ap")
+amount = 2
 
 [sub_resource type="Resource" id="Resource_branch"]
 script = ExtResource("2_branch")
@@ -23,6 +23,5 @@ effect_if_false = SubResource("Resource_draw")
 script = ExtResource("1_card")
 display_name = "Shed Skin"
 ap_cost = 1
-card_type = 3
 effects = Array[Resource]([SubResource("Resource_branch")])
 metadata/_custom_type_script = "uid://bo26t0p6qc7mu"

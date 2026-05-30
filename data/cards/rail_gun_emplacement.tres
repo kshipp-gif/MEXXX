@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_vau2g"]
 script = ExtResource("1_t3fln")
-duration = 2
+stacks = 2
 metadata/_custom_type_script = "uid://c6i0ehiq55vcu"
 
 [resource]

@@ -1,19 +1,17 @@
-[gd_resource type="Resource" script_class="Card" format=3]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://crobtiiqbw38u"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_card"]
-[ext_resource type="Script" path="res://components/effects/MultiHitStatusEffect.gd" id="2_eff"]
-[ext_resource type="Script" path="res://components/status_effects/VulnerableEffect.gd" id="3_vuln"]
+[ext_resource type="Script" uid="uid://ca3hj0hexf14e" path="res://components/effects/MultiHitStatusEffect.gd" id="2_eff"]
+[ext_resource type="Script" uid="uid://chtesx2o120ix" path="res://components/status_effects/VulnerableEffect.gd" id="3_vuln"]
 
 [sub_resource type="Resource" id="Resource_vuln"]
 script = ExtResource("3_vuln")
-stacks = 1
 
 [sub_resource type="Resource" id="Resource_001"]
 script = ExtResource("2_eff")
 damage_per_hit = 3
 hits = 3
 status_effect = SubResource("Resource_vuln")
-status_target = "target"
 
 [resource]
 script = ExtResource("1_card")

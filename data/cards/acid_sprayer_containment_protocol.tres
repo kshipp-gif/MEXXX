@@ -2,17 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cpynf4jpao2qd" path="res://components/status_effects/AcidEffect.gd" id="1_qgcv3"]
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_r7enq"]
-[ext_resource type="Script" uid="uid://pvkuww5ce03h" path="res://components/effects/GainBlockEffect.gd" id="1_tuu6r"]
+[ext_resource type="Script" uid="uid://dgvq5ce1dnlyg" path="res://components/effects/GainArmorEffect.gd" id="3_armor"]
 
 [sub_resource type="Resource" id="Resource_5mbnm"]
-script = ExtResource("1_tuu6r")
-amount = 10
-metadata/_custom_type_script = "uid://pvkuww5ce03h"
+script = ExtResource("3_armor")
+amount = 3
 
 [sub_resource type="Resource" id="Resource_tuu6r"]
 script = ExtResource("1_qgcv3")
-damage_per_tick = 2
-duration = 999
 metadata/_custom_type_script = "uid://cpynf4jpao2qd"
 
 [resource]

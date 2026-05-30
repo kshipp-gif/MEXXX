@@ -5,8 +5,6 @@
 
 [sub_resource type="Resource" id="Resource_hvtt2"]
 script = ExtResource("1_5haaw")
-damage_per_tick = 3
-duration = 999
 metadata/_custom_type_script = "uid://cpynf4jpao2qd"
 
 [resource]

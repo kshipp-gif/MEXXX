@@ -1,8 +1,14 @@
 [gd_resource type="Resource" script_class="CardSet" format=3 uid="uid://c3fdlphb3xlfc"]
 
 [ext_resource type="Script" uid="uid://bo26t0p6qc7mu" path="res://data/Card.gd" id="1_53kgo"]
+[ext_resource type="Resource" uid="uid://c6e2offe7qnpq" path="res://data/cards/auto_rifle_cover_fire.tres" id="2_7ucpe"]
 [ext_resource type="Script" uid="uid://7wypwmwdlmpj" path="res://data/CardSet.gd" id="2_gldon"]
+[ext_resource type="Resource" uid="uid://bxxf32bvgrxpe" path="res://data/cards/auto_rifle_full_auto.tres" id="3_hvjpf"]
+[ext_resource type="Resource" uid="uid://vkhjbc3fknfw" path="res://data/cards/auto_rifle_mag_dump.tres" id="4_au58e"]
+[ext_resource type="Resource" uid="uid://dc3gndxn07ke2" path="res://data/cards/auto_rifle_rapid_fire.tres" id="5_uyiq3"]
+[ext_resource type="Resource" uid="uid://b75uu1ulpqeh1" path="res://data/cards/auto_rifle_reload.tres" id="6_hiucw"]
 
 [resource]
 script = ExtResource("2_gldon")
+cards = Array[ExtResource("1_53kgo")]([ExtResource("2_7ucpe"), ExtResource("3_hvjpf"), ExtResource("4_au58e"), ExtResource("5_uyiq3"), ExtResource("6_hiucw")])
 metadata/_custom_type_script = "uid://7wypwmwdlmpj"

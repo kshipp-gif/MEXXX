@@ -1,14 +1,15 @@
-## Status effect that deals damage at the beginning of the enemies turn.
+## AcidEffect — deals halving damage each turn, bypassing armor.
+## Stacks = current damage amount. Halves (rounded down) each tick.
+## Removed after ticking when stacks reach 1.
+## Example: 10 → 5 → 2 → 1 (removed after dealing 1).
 extends StatusEffect
 class_name AcidEffect
 
-@export var damage_per_tick: int = 1
-
+## Stored reference to the unit this effect is on.
 var _host: Node = null
 
 func _init() -> void:
 	status_name = "acid"
-	duration = 999
 
 func apply(unit: Node) -> void:
 	_host = unit
@@ -16,16 +17,16 @@ func apply(unit: Node) -> void:
 func remove(_unit: Node) -> void:
 	_host = null
 
+## Deal current stacks as damage directly to HP (bypasses armor), then halve stacks.
+## If stacks was 1 this tick, it becomes 0 and is_expired() returns true.
 func tick() -> void:
 	if _host != null:
 		if "current_hp" in _host:
-			_host.current_hp = max(0, _host.current_hp - damage_per_tick)
+			_host.current_hp = max(0, _host.current_hp - stacks)
 		elif "hp" in _host:
-			_host.hp = max(0,_host.hp - damage_per_tick)
-	if damage_per_tick <= 1:
-		duration = 0
-	else:
-		damage_per_tick = damage_per_tick / 2
+			_host.hp = max(0, _host.hp - stacks)
 
-func is_expired() -> bool:
-	return duration <= 0
+	if stacks <= 1:
+		stacks = 0
+	else:
+		stacks = stacks / 2
