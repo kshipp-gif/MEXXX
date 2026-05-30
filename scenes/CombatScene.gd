@@ -29,6 +29,9 @@ func _ready() -> void:
 		$BattlefieldManager.grid_width = 12
 		$BattlefieldManager.grid_height = 12
 		$BattlefieldManager.place_unit(&"mech", Vector2i(6, 11), $Mech)
+		# Place test enemy on the grid.
+		if $Enemies/TestDummy != null:
+			$BattlefieldManager.place_unit(&"TestDummy", Vector2i(6, 3), $Enemies/TestDummy)
 
 	# Subscribe DeckManager to slot_changed so it rebuilds the deck on equip changes.
 	EventBus.subscribe("slot_changed", _on_slot_changed)
@@ -93,3 +96,33 @@ func _on_end_turn() -> void:
 	# Discard remaining hand cards before the enemy turn begins.
 	$HandManager.end_turn()
 	$CombatTurnManager.end_player_turn()
+
+## Check each frame if any enemy has died; remove from grid and respawn a new one.
+func _process(_delta: float) -> void:
+	for enemy in $Enemies.get_children():
+		if enemy.has_method("is_alive") and not enemy.is_alive():
+			_respawn_enemy(enemy)
+
+## Remove a dead enemy from the grid and spawn a fresh TestDummy.
+func _respawn_enemy(dead_enemy: Node) -> void:
+	var unit_id: StringName = dead_enemy.name
+	# Remove from grid display.
+	$BattlefieldManager._positions.erase(unit_id)
+	$BattlefieldManager._unit_nodes.erase(unit_id)
+	$GridLayer/BattlefieldGrid.remove_unit_sprite(unit_id)
+
+	# Remove from CombatTurnManager's enemy list.
+	$CombatTurnManager.enemies.erase(dead_enemy)
+
+	# Free the dead enemy node.
+	dead_enemy.queue_free()
+
+	# Spawn a new TestDummy.
+	var dummy_scene: PackedScene = load("res://nodes/TestDummy.tscn")
+	var new_dummy: Node = dummy_scene.instantiate()
+	new_dummy.name = "TestDummy"
+	$Enemies.add_child(new_dummy)
+
+	# Place on grid at starting position.
+	$BattlefieldManager.place_unit(&"TestDummy", Vector2i(6, 3), new_dummy)
+	$CombatTurnManager.enemies.append(new_dummy)

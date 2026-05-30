@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://nodes/Enemy.gd" id="1_enscr"]
+[ext_resource type="Script" path="res://components/enemy_behaviors/MoveTowardMechBehavior.gd" id="2_movbeh"]
+[ext_resource type="Script" path="res://components/managers/StatusEffectManager.gd" id="3_semgr"]
+
+[sub_resource type="Resource" id="Resource_move"]
+script = ExtResource("2_movbeh")
+
+[node name="TestDummy" type="Node2D"]
+script = ExtResource("1_enscr")
+max_hp = 20
+behaviors = Array[EnemyBehavior]([SubResource("Resource_move")])
+
+[node name="StatusEffectManager" type="Node" parent="."]
+script = ExtResource("3_semgr")
